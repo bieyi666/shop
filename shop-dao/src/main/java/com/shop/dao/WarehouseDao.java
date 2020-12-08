@@ -19,6 +19,5 @@ public interface WarehouseDao {
      */
     public int queryCountWarehouse();
 
-    public void add();
 
 }
