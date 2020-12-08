@@ -1,0 +1,6 @@
+# Project exclude paths
+/shop-dao/target/
+/shop-service/target/
+/shop-utils/target/
+/shop-vo/target/
+/shop-web/target/
