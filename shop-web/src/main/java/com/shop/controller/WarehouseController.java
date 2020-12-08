@@ -24,7 +24,7 @@ public class WarehouseController {
      * @param rows 一页展示多少条数据
      * @return
      */
-    @CrossOrigin
+    @CrossOrigin //跨域
     @RequestMapping("/queryAllWarehouse.action")
     @ResponseBody
     public PageVo<Warehouse> queryAllWarehouse(@RequestParam(value = "page",defaultValue = "1") int page,
