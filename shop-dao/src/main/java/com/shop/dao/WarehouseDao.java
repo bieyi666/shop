@@ -20,4 +20,6 @@ public interface WarehouseDao {
     public int queryCountWarehouse();
 
 
+
+
 }
