@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.MenuDao">
+    <select id="seMenu" resultMap="seMenuRM">
+        select * from menu_info
+        where parentId = 0;
+    </select>
+    <resultMap id="seMenuRM" type="Menu">
+        <id column="id" property="id"></id>
+        <collection property="children" javaType="ArrayList" ofType="Menu" column="id" select="seMenuChildren"/>
+    </resultMap>
+    <select id="seMenuChildren" resultType="Menu">
+        select * from menu_info
+        where parentId = #{id};
+    </select>
+
+</mapper>
