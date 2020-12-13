@@ -13,4 +13,19 @@ public interface UserService {
      * @return
      */
     public PageVo<UserInfo> queryAllUser(int page,int rows);
+
+
+    /**
+     * 查询登录后的用户信息
+     * @param uid 用户id
+     * @return 用户vo
+     */
+    public UserInfo queryUserInfo(int uid);
+
+    /**
+     * 修改个人信息
+     * @param userInfo
+     * @return
+     */
+    public int editUserInfo(UserInfo userInfo);
 }

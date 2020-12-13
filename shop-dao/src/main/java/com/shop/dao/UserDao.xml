@@ -16,4 +16,22 @@
     <select id="queryCountUser" parameterType="list" resultType="int">
         select count(*) from user_info
     </select>
+
+
+    <!--    .....................前台个人中心页面..............................-->
+    <!--    查询用户个人信息-->
+    <select id="queryUserInfo" resultType="userInfo">
+        select * from user_info where uId = #{uid}
+    </select>
+
+    <update id="editUserInfo" parameterType="userInfo">
+        UPDATE
+              `user_info`
+            SET
+              `uName` = #{uName},
+              `phone` = #{phone},
+              `photo` = #{photo}
+            WHERE `uId` = #{uid} ;
+    </update>
+    <!--    .................................................................-->
 </mapper>

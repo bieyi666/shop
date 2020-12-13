@@ -30,4 +30,22 @@ public class UserServiceImpl implements UserService
         pageVo.setTotal(userDao.queryCountUser());
         return pageVo;
     }
+
+    /**
+     * 查询登录后的用户信息
+     * @param uid 用户id
+     * @return 用户vo
+     */
+    public UserInfo queryUserInfo(int uid){
+        UserInfo userInfo = userDao.queryUserInfo(uid);
+
+
+        return userInfo;
+    }
+
+    @Override
+    public int editUserInfo(UserInfo userInfo) {
+        int num = userDao.editUserInfo(userInfo);
+        return num;
+    }
 }
