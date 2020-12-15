@@ -20,6 +20,12 @@ public interface WarehouseDao {
     public int queryCountWarehouse();
 
 
+    /**
+     * 根据编号 修改仓库信息
+     * @param warehouse
+     * @return
+     */
+    public int updateWarehouseById(Warehouse warehouse);
 
 
 }

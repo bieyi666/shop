@@ -31,4 +31,33 @@ public class WarehouseTypeServiceImpl implements WarehouseTypeService
         pageVo.setTotal(warehouseTypeDao.queryCountWarehouseType());
         return pageVo;
     }
+
+    /**
+     * 根据编号修改仓库类型
+     * @param WarehouseType
+     * @return
+     */
+    @Override
+    public int updateWarehouseTypeById(WarehouseType WarehouseType) {
+        return warehouseTypeDao.updateWarehouseTypeById(WarehouseType);
+    }
+
+    /**
+     * 根据编号 查询仓库类型
+     * @param id
+     * @return
+     */
+    @Override
+    public WarehouseType queryWarehouseTypeById(int id) {
+        return warehouseTypeDao.queryWarehouseTypeById(id);
+    }
+
+    /**
+     * 查询所有仓库类型 没有分页
+     * @return
+     */
+    @Override
+    public List<WarehouseType> queryAllWarehouseTypes() {
+        return warehouseTypeDao.queryAllWarehouseTypes();
+    }
 }

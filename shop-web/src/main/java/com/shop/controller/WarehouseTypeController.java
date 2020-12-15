@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 //仓库类型
 @Controller
 public class WarehouseTypeController {
@@ -32,4 +34,43 @@ public class WarehouseTypeController {
         return warehouseTypeService.queryAllWarehouseType(page,rows);
     }
 
+    /**
+     * 根据编号修改仓库类型
+     * @param WarehouseType
+     * @return
+     */
+    @CrossOrigin //跨域
+    @RequestMapping(value = "/updateWarehouseTypeById.action", produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public String updateWarehouseTypeById(WarehouseType WarehouseType) {
+        int num=warehouseTypeService.updateWarehouseTypeById(WarehouseType);
+        if (num!=0){
+            return "修改成功";
+        }
+        return "修改失败";
+    }
+
+
+    /**
+     * 根据编号 查询仓库类型
+     * @param id
+     * @return
+     */
+    @CrossOrigin //跨域
+    @RequestMapping("/queryWarehouseTypeById.action")
+    @ResponseBody
+    public WarehouseType queryWarehouseTypeById(int id) {
+        return warehouseTypeService.queryWarehouseTypeById(id);
+    }
+
+    /**
+     * 查询所有仓库类型 没有分页
+     * @return
+     */
+    @CrossOrigin //跨域
+    @RequestMapping("/queryAllWarehouseTypes.action")
+    @ResponseBody
+    public List<WarehouseType> queryAllWarehouseTypes() {
+        return warehouseTypeService.queryAllWarehouseTypes();
+    }
 }

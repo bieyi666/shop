@@ -31,4 +31,20 @@ public class WarehouseController {
                                                @RequestParam(value = "rows",defaultValue = "5") int rows) {
         return warehouseService.queryAllWarehouse(page,rows);
     }
+
+    /**
+     * 根据编号 修改仓库信息
+     * @param warehouse
+     * @return
+     */
+    @CrossOrigin //跨域
+    @RequestMapping(value = "/updateWarehouseById.action", produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public String updateWarehouseById(Warehouse warehouse) {
+        int num=warehouseService.updateWarehouseById(warehouse);
+        if(num!=0){
+            return "修改成功";
+        }
+        return "修改失败";
+    }
 }

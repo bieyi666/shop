@@ -17,4 +17,19 @@
         select count(*) from Warehouse_Type
     </select>
 
+    <!--    根据编号修改类型-->
+    <update id="updateWarehouseTypeById" parameterType="WarehouseType">
+        update warehouse_Type set name=#{name} where id=#{id}
+    </update>
+
+    <!--    根据编号 查询仓库类型-->
+    <select id="queryWarehouseTypeById" parameterType="WarehouseType" resultType="WarehouseType">
+         select * from Warehouse_Type where id=#{id}
+    </select>
+
+    <!--    查询所有仓库类型 没有分页-->
+    <select id="queryAllWarehouseTypes" parameterType="list" resultType="WarehouseType">
+        select * from Warehouse_Type
+    </select>
+
 </mapper>
