@@ -15,12 +15,12 @@
 
     <!--查询所有仓库信息-->
     <select id="queryAllWarehouse" parameterType="list" resultMap="queryAll">
-        select * from Warehouse
+        select * from Warehouse where state=1
     </select>
 
     <!--查询总仓库数-->
     <select id="queryCountWarehouse" parameterType="list" resultType="int">
-        select count(*) from Warehouse
+        select count(*) from Warehouse where state=1
     </select>
 
     <!--    根据编号 修改仓库信息-->
@@ -30,8 +30,17 @@
 
     <!--    仓库信息添加-->
     <insert id="addWarehouse" parameterType="Warehouse">
-        insert into Warehouse value(null,#{name},#{capacity},#{tid})
+        insert into Warehouse value(null,#{name},#{capacity},#{tid},1)
     </insert>
 
+    <!--    根据类型编号 查询仓库是否存在-->
+    <select id="queryWarehouseBytId" parameterType="list" resultType="Warehouse">
+        select * from Warehouse where tid=#{tid} and state=1
+    </select>
+
+    <!--    根据编号 查询仓库信息-->
+    <select id="queryWarehouseById" parameterType="Warehouse" resultType="Warehouse">
+        select * from Warehouse where id=#{id}
+    </select>
 
 </mapper>

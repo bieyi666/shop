@@ -3,6 +3,7 @@ package com.shop.controller;
 import com.github.pagehelper.PageHelper;
 import com.shop.service.WarehouseTypeService;
 import com.shop.vo.PageVo;
+import com.shop.vo.Warehouse;
 import com.shop.vo.WarehouseType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +89,22 @@ public class WarehouseTypeController {
         if (num != 0){
             return "添加成功";
         }
-        return "添加失败";
+        return "类型已存在";
+    }
+
+    /**
+     * 根据编号 删除仓库（逻辑删除 0）
+     * @param id
+     * @return
+     */
+    @CrossOrigin //跨域
+    @RequestMapping(value = "/delWarehouseTypeById.action", produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public String delWarehouseTypeById(int id) {
+        int num=warehouseTypeService.delWarehouseTypeById(id);
+        if (num == 0){
+            return "类型下存在仓库,不能删除";
+        }
+        return "删除成功";
     }
 }
