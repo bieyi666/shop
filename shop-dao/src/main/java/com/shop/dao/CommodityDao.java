@@ -27,17 +27,4 @@ public interface CommodityDao {
      */
     public int delCommodityById(int id);
 
-    /**
-     * 添加商品信息
-     * @param commodity
-     * @return
-     */
-    public int insertCommodity(Commodity commodity);
-
-    /**
-     *根据id修改商品
-     * @param commodity
-     * @return
-     */
-    public int updateCommodityById(Commodity commodity);
 }

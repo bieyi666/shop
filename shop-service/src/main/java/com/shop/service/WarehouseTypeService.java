@@ -43,4 +43,11 @@ public interface WarehouseTypeService {
      */
     public int addWarehouseType(WarehouseType warehouseType);
 
+    /**
+     * 根据编号 删除仓库（逻辑删除 0）
+     * @param id
+     * @return
+     */
+    public int delWarehouseTypeById(int id);
+
 }

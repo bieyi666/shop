@@ -36,4 +36,6 @@
     <insert id="insertCommodity" parameterType="Commodity">
         INSERT INTO commodity(cName,tId,price,picture,introduce)values(#{cName},#{tId},#{price},#{picture},#{introduce})
     </insert>
+
+
 </mapper>
