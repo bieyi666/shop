@@ -11,6 +11,7 @@ public interface CommodityDao {
      * @param commodity
      * @return
      */
+    /*aaa*/
     public List<Commodity> queryAllCommodity(Commodity commodity);
     /**
      * 查询商品总数
