@@ -6,6 +6,11 @@
   接口中 每一个方法  都与  标签的id对应
 -->
 <mapper namespace="com.shop.dao.CommodityPrintDao">
-
+    <select id="queryAllCommodityPrint" parameterType="CommodityPrint" resultType="CommodityPrint">
+        select * from commodity_picture
+        <where>
+            <if test="cId!=0 and cId!=null">cId=#{cId}</if>
+        </where>
+    </select>
 
 </mapper>

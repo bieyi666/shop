@@ -3,6 +3,7 @@ package com.shop.controller;
 import com.shop.service.UserService;
 import com.shop.vo.PageVo;
 import com.shop.vo.UserInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 //用户
 @Controller
@@ -29,9 +32,9 @@ public class UserController {
     @CrossOrigin //跨域
     @RequestMapping("/queryAllUser.action")
     @ResponseBody
-    public PageVo<UserInfo> queryAllUser(@RequestParam(value = "page",defaultValue = "1") int page,
+    public PageVo<UserInfo> queryAllUser(UserInfo userInfo,@RequestParam(value = "page",defaultValue = "1") int page,
                                          @RequestParam(value = "rows",defaultValue = "5") int rows) {
-        return userService.queryAllUser(page,rows);
+        return userService.queryAllUser(userInfo,page,rows);
     }
 
     /**
@@ -89,5 +92,48 @@ public class UserController {
 
     }
 
+    //登录是查询手机号码与密码是否相同
+    @CrossOrigin //跨域
+    @RequestMapping(value = "/queryerUserInfo.action")
+    @ResponseBody
+    public Map queryerUserInfo(UserInfo userInfo,HttpSession session){
+        Map<String,String> map =new HashMap<String,String>();
+        Md5Hash md5Hash=new Md5Hash(userInfo.getPassword(),"哥谭市",5);
+        userInfo.setPassword(md5Hash+"");
+        System.out.println(md5Hash);
+        UserInfo userInfo1=userService.queryerUserInfo(userInfo);
+        System.out.println("拿到数据"+userInfo);
+        if(userInfo1!=null){
+            session.setAttribute("user",userInfo1);
+            map.put("code","0");
+            map.put("msg","登录成功");
+            map.put("username",userInfo1.getPhone());
+        }else{
+            map.put("code","1");
+            map.put("msg","登录失败");
+            //map.put("username","test");
+        }
+        return map;
+    }
+    //添加用户
+    @CrossOrigin //跨域
+    @RequestMapping(value = "/insertUserInfo.action")
+    @ResponseBody
+    public Map insertUserInfo(UserInfo userInfo){
+        Map<String,String> map =new HashMap<String,String>();
+        Md5Hash md5Hash=new Md5Hash(userInfo.getPassword(),"哥谭市",5);
+        System.out.println(md5Hash);
+        userInfo.setPassword(md5Hash+"");
+        System.out.println(userInfo);
+        int num=userService.insertUserInfo(userInfo);
+        if(num==1){
+            map.put("code","0");
+            map.put("msg","注册成功");
+        }else{
+            map.put("code","1");
+            map.put("msg","注册失败");
+        }
+        return map;
+    }
 
 }

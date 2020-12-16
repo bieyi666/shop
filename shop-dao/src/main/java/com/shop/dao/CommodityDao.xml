@@ -6,6 +6,34 @@
   接口中 每一个方法  都与  标签的id对应
 -->
 <mapper namespace="com.shop.dao.CommodityDao">
-
-
+    <!--根据条件查询所有商品-->
+    <select id="queryAllCommodity" parameterType="Commodity" resultType="Commodity">
+        select * from commodity
+        <where>
+            <if test="cName!=null and cName!='' ">cName=#{cName}</if>
+            <if test="tId!=null and tId!='' ">tId=#{tId}</if>
+            <if test="price!=null and price!='' ">price=#{price}</if>
+        </where>
+    </select>
+    <!--根基条件查询所有商品数量-->
+    <select id="queryCountCommodity" parameterType="Commodity" resultType="int">
+        select * from commodity
+        <where>
+            <if test="cName!=null and cName!='' ">cName=#{cName}</if>
+            <if test="tId!=null and tId!='' ">tId=#{tId}</if>
+            <if test="price!=null and price!='' ">price=#{price}</if>
+        </where>
+    </select>
+    <!--删除商品   （逻辑删除）-->
+    <update id="delCommodityById" parameterType="int">
+        UPDATE commodity SET state=0  WHERE cId=#{id}
+    </update>
+    <!--修改商品信息-->
+    <update id="updateCommodityById" parameterType="Commodity">
+        UPDATE commodity SET cName=#{cName},tId=#{tId},price=#{price},picture=#{picture},introduce=#{introduce}  WHERE cId=#{cId}
+    </update>
+    <!--添加商品信息-->
+    <insert id="insertCommodity" parameterType="Commodity">
+        INSERT INTO commodity(cName,tId,price,picture,introduce)values(#{cName},#{tId},#{price},#{picture},#{introduce})
+    </insert>
 </mapper>
