@@ -39,4 +39,14 @@ public class WarehouseServiceImpl implements WarehouseService
     public int updateWarehouseById(Warehouse warehouse) {
         return warehouseDao.updateWarehouseById(warehouse);
     }
+
+    /**
+     * 仓库信息添加
+     * @param warehouse
+     * @return
+     */
+    @Override
+    public int addWarehouse(Warehouse warehouse) {
+        return warehouseDao.addWarehouse(warehouse);
+    }
 }

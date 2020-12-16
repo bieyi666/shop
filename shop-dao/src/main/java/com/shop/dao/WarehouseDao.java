@@ -28,4 +28,12 @@ public interface WarehouseDao {
     public int updateWarehouseById(Warehouse warehouse);
 
 
+    /**
+     * 仓库信息添加
+     * @param warehouse
+     * @return
+     */
+    public int addWarehouse(Warehouse warehouse);
+
+
 }

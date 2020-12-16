@@ -73,4 +73,21 @@ public class WarehouseTypeController {
     public List<WarehouseType> queryAllWarehouseTypes() {
         return warehouseTypeService.queryAllWarehouseTypes();
     }
+
+
+    /**
+     * 仓库类型 添加
+     * @param warehouseType
+     * @return
+     */
+    @CrossOrigin //跨域
+    @RequestMapping(value = "/addWarehouseType.action", produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public String addWarehouseType(WarehouseType warehouseType) {
+        int num=warehouseTypeService.addWarehouseType(warehouseType);
+        if (num != 0){
+            return "添加成功";
+        }
+        return "添加失败";
+    }
 }

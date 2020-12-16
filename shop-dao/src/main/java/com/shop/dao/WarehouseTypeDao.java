@@ -40,4 +40,11 @@ public interface WarehouseTypeDao {
      */
     public List<WarehouseType> queryAllWarehouseTypes();
 
+    /**
+     * 仓库类型 添加
+     * @param warehouseType
+     * @return
+     */
+    public int addWarehouseType(WarehouseType warehouseType);
+
 }

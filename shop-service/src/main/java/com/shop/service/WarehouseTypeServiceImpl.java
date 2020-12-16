@@ -60,4 +60,14 @@ public class WarehouseTypeServiceImpl implements WarehouseTypeService
     public List<WarehouseType> queryAllWarehouseTypes() {
         return warehouseTypeDao.queryAllWarehouseTypes();
     }
+
+    /**
+     * 仓库类型 添加
+     * @param warehouseType
+     * @return
+     */
+    @Override
+    public int addWarehouseType(WarehouseType warehouseType) {
+        return warehouseTypeDao.addWarehouseType(warehouseType);
+    }
 }

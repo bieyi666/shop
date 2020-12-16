@@ -28,5 +28,10 @@
         update Warehouse set name=#{name} , capacity=#{capacity} , tid=#{tid} where id=#{id}
     </update>
 
+    <!--    仓库信息添加-->
+    <insert id="addWarehouse" parameterType="Warehouse">
+        insert into Warehouse value(null,#{name},#{capacity},#{tid})
+    </insert>
+
 
 </mapper>
