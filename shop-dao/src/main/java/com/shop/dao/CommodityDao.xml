@@ -6,24 +6,40 @@
   接口中 每一个方法  都与  标签的id对应
 -->
 <mapper namespace="com.shop.dao.CommodityDao">
+    <resultMap id="queryAll" type="Commodity">
+        <result property="cId" column="cid"></result>
+        <collection property="commodityType" ofType="commodityType"
+                    javaType="commodityType" select="com.shop.dao.CommodityTypeDao.queryCommodityTypeByCid" column="cid"></collection>
+    </resultMap>
     <!--根据条件查询所有商品-->
-    <select id="queryAllCommodity" parameterType="Commodity" resultType="Commodity">
+    <select id="queryAllCommodity" parameterType="Commodity" resultMap="queryAll">
         select * from commodity
         <where>
             <if test="cName!=null and cName!='' ">cName=#{cName}</if>
             <if test="tId!=null and tId!='' ">tId=#{tId}</if>
             <if test="price!=null and price!='' ">price=#{price}</if>
+            <if test="purchaseState !=null and purchaseState!=''">
+                purchaseState=#{purchaseState}
+            </if>
         </where>
     </select>
     <!--根基条件查询所有商品数量-->
     <select id="queryCountCommodity" parameterType="Commodity" resultType="int">
-        select * from commodity
+        select count(*) from commodity
         <where>
             <if test="cName!=null and cName!='' ">cName=#{cName}</if>
             <if test="tId!=null and tId!='' ">tId=#{tId}</if>
             <if test="price!=null and price!='' ">price=#{price}</if>
+            <if test="purchaseState !=null and purchaseState!=''">
+                purchaseState=#{purchaseState}
+            </if>
         </where>
     </select>
+
+
+    <!--  ❗❗❗❗  上面为供货商代码———————————————————————————————————————————————————————————————————— -->
+
+
     <!--删除商品   （逻辑删除）-->
     <update id="delCommodityById" parameterType="int">
         UPDATE commodity SET state=0  WHERE cId=#{id}

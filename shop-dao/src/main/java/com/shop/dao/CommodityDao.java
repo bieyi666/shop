@@ -11,13 +11,16 @@ public interface CommodityDao {
      * @param commodity
      * @return
      */
-    /*aaa*/
     public List<Commodity> queryAllCommodity(Commodity commodity);
     /**
      * 查询商品总数
      * @return
      */
     public int queryCountCommodity(Commodity commodity);
+
+
+
+    //上面为供货商代码 ————————————————————————————————————————————————————————————————————
 
 
     /**
