@@ -13,4 +13,5 @@ public class Commodity {
     private String introduce; //介绍
     private int state; //状态 0：下架 1：上架
     private int purchaseState; //状态 1：商品存在
+    private Float purchasePrice; //供应商价格
 }
