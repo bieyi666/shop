@@ -47,6 +47,10 @@ public class WarehouseServiceImpl implements WarehouseService
      */
     @Override
     public int addWarehouse(Warehouse warehouse) {
+        Warehouse warehouses=warehouseDao.queryWarehouseByName(warehouse.getName());
+        if (warehouses != null){
+            return 0;
+        }
         return warehouseDao.addWarehouse(warehouse);
     }
 }

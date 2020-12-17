@@ -13,5 +13,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://rm-wz9hiilun5p31w068125010sm.mysql.rds.aliyuncs.com/shop</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="shopMysql [3]" uuid="309c0fe0-0871-4dd9-9c0b-4784682b184a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://rm-wz9hiilun5p31w068125010sm.mysql.rds.aliyuncs.com/shop</jdbc-url>
+    </data-source>
   </component>
 </project>

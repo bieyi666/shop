@@ -27,4 +27,12 @@ public interface CommodityDao {
      */
     public int delCommodityById(int id);
 
+    /**
+     * 根据编号 查询商品
+     * @param id
+     * @return
+     */
+    public Commodity queryCommodityById(int id);
+
+
 }

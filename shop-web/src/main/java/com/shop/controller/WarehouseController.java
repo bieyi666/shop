@@ -64,6 +64,6 @@ public class WarehouseController {
         if (num != 0) {
             return "添加成功";
         }
-        return "添加失败";
+        return "仓库名已存在";
     }
 }

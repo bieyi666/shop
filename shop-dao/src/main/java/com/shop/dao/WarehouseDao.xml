@@ -43,4 +43,8 @@
         select * from Warehouse where id=#{id}
     </select>
 
+    <!--    根据名称 查询仓库信息-->
+    <select id="queryWarehouseByName" parameterType="Warehouse" resultType="Warehouse">
+        select * from Warehouse where name=#{name}
+    </select>
 </mapper>

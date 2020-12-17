@@ -56,5 +56,12 @@ public interface WarehouseDao {
      */
     public Warehouse queryWarehouseById(int id);
 
+    /**
+     *根据名称 查询仓库信息
+     * @param name
+     * @return
+     */
+    public Warehouse queryWarehouseByName(String name);
+
 
 }
