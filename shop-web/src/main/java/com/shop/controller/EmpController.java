@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.service.EmpService;
+import com.shop.utils.ImageUpload;
 import com.shop.vo.Emp;
 import com.shop.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 
 /**
  * @author "can"
@@ -33,7 +32,7 @@ public class EmpController {
     public boolean upEmp(Integer id, String name, String sex, Integer age, String phone,
                          String address, MultipartFile img) {
 
-        String imgName = save_image(img);
+        String imgName = new ImageUpload().save_image(img);
         return empService.upEmp(id, name, sex, age, phone, address, imgName);
     }
 
@@ -41,7 +40,7 @@ public class EmpController {
     public boolean inEmp(String name, String sex, Integer age, String phone,
                          String address, MultipartFile img) {
 
-        String imgName = save_image(img);
+        String imgName = new ImageUpload().save_image(img);
         if (imgName == null) {
             imgName = "3.png";
         }
@@ -61,31 +60,5 @@ public class EmpController {
     @RequestMapping(value = "delEmpRole.action")
     public boolean delEmpRole(Integer eid, Integer rid) {
         return empService.delEmpRole(eid, rid);
-    }
-
-    /**
-     * 封装的将图片存入本地的方法
-     * @param image MultipartFile
-     * @return 图片名
-     */
-    public String save_image(MultipartFile image) {
-        // 图片名
-        String image_name = null;
-        // 用户选择了图片
-        if (image != null) {
-            image_name = System.currentTimeMillis() +
-                    image.getOriginalFilename().
-                            substring(image.getOriginalFilename().lastIndexOf("."));
-
-            // 保存路径
-            String path = "D:\\upload\\";
-            // 存入图片服务器
-            try {
-                image.transferTo(new File(path, image_name));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return image_name;
     }
 }

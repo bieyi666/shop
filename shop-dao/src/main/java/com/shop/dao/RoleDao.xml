@@ -7,4 +7,16 @@
     <select id="seRole" resultType="Role">
         select * from role_info;
     </select>
+
+    <insert id="inRole">
+        insert into role_info(name) values (#{name});
+    </insert>
+
+    <update id="upRole">
+        update role_info set name = #{name};
+    </update>
+
+    <delete id="delRole">
+        delete from role_info where id = #{id}                                                                                                                                                                                                                                                                                                                                                                                                                         id = #{id}
+    </delete>
 </mapper>
