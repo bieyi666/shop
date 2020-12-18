@@ -32,4 +32,18 @@ public class CommodityController {
                                                @RequestParam(value = "rows", defaultValue = "5") int rows) {
         return commodityService.queryAllCommodity(commodity, page, rows);
     }
+
+    /**
+     * 根据商品编号 修改商品信息
+     * @param commodity
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/updateCommodityByPid.action",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public int updateCommodityByPid(Commodity commodity) {
+        return commodityService.updateCommodityByPid(commodity);
+    }
+
+    //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
 }

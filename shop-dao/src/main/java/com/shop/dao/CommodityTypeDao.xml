@@ -21,4 +21,18 @@
 
     <!--    上面为供货商 ————————————————————————————————————————————————————————————————————————————————————————————-->
 
+    <!--    查询所有商品类型-->
+    <select id="queryAllCommodityType" parameterType="CommodityType" resultType="CommodityType">
+        select * from Commodity_type
+        <where>
+            <if test="ter==0">
+                ter=0
+            </if>
+            <if test="ter!=0">
+                ter=#{ter}
+            </if>
+        </where>
+    </select>
+
+
 </mapper>

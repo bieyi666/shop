@@ -16,7 +16,14 @@ public interface CommodityService {
     public PageVo<Commodity> queryAllCommodity(Commodity commodity,int page,int rows);
 
 
+    /**
+     * 根据商品编号 修改商品信息
+     * @param commodity
+     * @return
+     */
+    public int updateCommodityByPid(Commodity commodity);
 
+    //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
 
 
 }

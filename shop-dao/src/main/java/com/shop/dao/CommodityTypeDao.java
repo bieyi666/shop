@@ -24,6 +24,6 @@ public interface CommodityTypeDao {
      * 查询所有商品类型
      * @return
      */
-    public List<CommodityType> queryAllCommodityType();
+    public List<CommodityType> queryAllCommodityType(CommodityType commodityType);
 
 }

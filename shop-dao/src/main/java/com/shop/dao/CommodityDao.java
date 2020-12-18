@@ -12,15 +12,23 @@ public interface CommodityDao {
      * @return
      */
     public List<Commodity> queryAllCommodity(Commodity commodity);
+
     /**
      * 查询商品总数
      * @return
      */
     public int queryCountCommodity(Commodity commodity);
 
+    /**
+     * 根据商品编号 修改商品信息
+     * @param commodity
+     * @return
+     */
+    public int updateCommodityByPid(Commodity commodity);
 
 
-    //上面为供货商代码 ————————————————————————————————————————————————————————————————————
+
+    //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
 
 
     /**

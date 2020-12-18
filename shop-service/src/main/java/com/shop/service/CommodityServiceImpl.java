@@ -28,4 +28,16 @@ public class CommodityServiceImpl implements CommodityService
         pageVo.setTotal(commodityDao.queryCountCommodity(commodity));
         return pageVo;
     }
+
+    /**
+     * 根据商品编号 修改商品信息
+     * @param commodity
+     * @return
+     */
+    @Override
+    public int updateCommodityByPid(Commodity commodity) {
+        return commodityDao.updateCommodityByPid(commodity);
+    }
+
+    //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
 }
