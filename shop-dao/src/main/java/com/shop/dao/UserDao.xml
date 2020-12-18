@@ -8,15 +8,36 @@
 <mapper namespace="com.shop.dao.UserDao">
 
     <!--查询所有用户信息-->
-    <select id="queryAllUser" parameterType="list" resultType="userInfo">
+    <select id="queryAllUser" parameterType="UserInfo" resultType="userInfo">
         select * from user_info
+        <where>
+            <if test="uName!=null and uName!='' ">uName=#{uName}</if>
+            <if test="phone!=null and phone!='' ">and phone=#{phone}</if>
+            <if test="uId!=null and uId!='' ">and uId=#{uId}</if>
+        </where>
     </select>
 
     <!--查询用户总数-->
-    <select id="queryCountUser" parameterType="list" resultType="int">
+    <select id="queryCountUser" parameterType="UserInfo" resultType="int">
         select count(*) from user_info
+        <where>
+            <if test="uName!=null and uName!='' ">uName=#{uName}</if>
+            <if test="phone!=null and phone!='' ">and phone=#{phone}</if>
+            <if test="uId!=null and uId!='' ">and uId=#{uId}</if>
+        </where>
     </select>
-
+    <!--查询当前手机号码是否存在-->
+    <select id="queryerUserInfo" parameterType="UserInfo" resultType="UserInfo">
+        select * from user_info
+         <where>
+             <if test="phone!=null and phone!='' ">phone=#{phone}</if>
+             <if test="password!=null and password!='' ">and password=#{password}</if>
+         </where>
+    </select>
+    <!--添加用户-->
+    <insert id="insertUserInfo" parameterType="UserInfo" >
+        INSERT INTO user_info(uName,phone,PASSWORD,photo) VALUES(#{uName},#{phone},#{password},#{photo});
+    </insert>
 
     <!--    .....................前台个人中心页面..............................-->
     <!--    查询用户个人信息-->

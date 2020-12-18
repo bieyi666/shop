@@ -12,7 +12,18 @@ public interface UserService {
      * @param rows 一页几条数据
      * @return
      */
-    public PageVo<UserInfo> queryAllUser(int page,int rows);
+    public PageVo<UserInfo> queryAllUser(UserInfo userInfo,int page,int rows);
+
+    /**
+     * 添加用户
+     * @param userInfo
+     * @return
+     */
+    public int insertUserInfo(UserInfo userInfo);
+    /**
+     * 查询当前手机号码是否存在
+     */
+    public UserInfo queryerUserInfo(UserInfo userInfo);
 
 
     /**

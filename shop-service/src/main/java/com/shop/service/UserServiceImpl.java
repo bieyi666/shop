@@ -23,12 +23,33 @@ public class UserServiceImpl implements UserService
      * @return
      */
     @Override
-    public PageVo<UserInfo> queryAllUser(int page, int rows) {
+    public PageVo<UserInfo> queryAllUser(UserInfo userInfo,int page, int rows) {
         PageVo<UserInfo> pageVo=new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setRows(userDao.queryAllUser());
-        pageVo.setTotal(userDao.queryCountUser());
+        pageVo.setRows(userDao.queryAllUser(userInfo));
+        pageVo.setTotal(userDao.queryCountUser(userInfo));
         return pageVo;
+    }
+
+    /**
+     * 用户添加
+     * @param userInfo
+     * @return
+     */
+    @Override
+    public int insertUserInfo(UserInfo userInfo) {
+        return userDao.insertUserInfo(userInfo);
+    }
+
+    /**
+     * 查询该注册号码是否存在
+     * @param userInfo
+     * @return
+     */
+    @Override
+    public UserInfo queryerUserInfo(UserInfo userInfo) {
+        UserInfo userInfo1=userDao.queryerUserInfo(userInfo);
+        return userInfo1;
     }
 
     /**
@@ -38,11 +59,8 @@ public class UserServiceImpl implements UserService
      */
     public UserInfo queryUserInfo(int uid){
         UserInfo userInfo = userDao.queryUserInfo(uid);
-
-
         return userInfo;
     }
-
     @Override
     public int editUserInfo(UserInfo userInfo) {
         int num = userDao.editUserInfo(userInfo);

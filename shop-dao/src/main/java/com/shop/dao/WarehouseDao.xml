@@ -7,14 +7,44 @@
 -->
 <mapper namespace="com.shop.dao.WarehouseDao">
 
+    <resultMap id="queryAll" type="Warehouse">
+        <collection property="warehouseType" ofType="com.shop.vo.WarehouseType"
+                    javaType="com.shop.vo.WarehouseType" select="com.shop.dao.WarehouseTypeDao.queryWarehouseTypeById"
+                    column="tid"></collection>
+    </resultMap>
+
     <!--查询所有仓库信息-->
-    <select id="queryAllWarehouse" parameterType="list" resultType="Warehouse">
-        select * from Warehouse
+    <select id="queryAllWarehouse" parameterType="list" resultMap="queryAll">
+        select * from Warehouse where state=1
     </select>
 
     <!--查询总仓库数-->
     <select id="queryCountWarehouse" parameterType="list" resultType="int">
-        select count(*) from Warehouse
+        select count(*) from Warehouse where state=1
     </select>
 
+    <!--    根据编号 修改仓库信息-->
+    <update id="updateWarehouseById" parameterType="Warehouse">
+        update Warehouse set name=#{name} , capacity=#{capacity} , tid=#{tid} where id=#{id}
+    </update>
+
+    <!--    仓库信息添加-->
+    <insert id="addWarehouse" parameterType="Warehouse">
+        insert into Warehouse value(null,#{name},#{capacity},#{tid},1)
+    </insert>
+
+    <!--    根据类型编号 查询仓库是否存在-->
+    <select id="queryWarehouseBytId" parameterType="list" resultType="Warehouse">
+        select * from Warehouse where tid=#{tid} and state=1
+    </select>
+
+    <!--    根据编号 查询仓库信息-->
+    <select id="queryWarehouseById" parameterType="Warehouse" resultType="Warehouse">
+        select * from Warehouse where id=#{id}
+    </select>
+
+    <!--    根据名称 查询仓库信息-->
+    <select id="queryWarehouseByName" parameterType="Warehouse" resultType="Warehouse">
+        select * from Warehouse where name=#{name}
+    </select>
 </mapper>

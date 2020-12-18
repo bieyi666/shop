@@ -11,13 +11,24 @@ public interface UserDao {
      * 查询所有用户信息
      * @return
      */
-    public List<UserInfo> queryAllUser();
+    public List<UserInfo> queryAllUser(UserInfo userInfo);
+
+    /**
+     * 添加用户
+     * @param userInfo
+     * @return
+     */
+    public int insertUserInfo(UserInfo userInfo);
 
     /**
      * 查询用户总数
      * @return
      */
-    public int queryCountUser();
+    public int queryCountUser(UserInfo userInfo);
+    /**
+     * 查询当前手机号码是否存在
+     */
+    public UserInfo queryerUserInfo(UserInfo userInfo);
 
 
 

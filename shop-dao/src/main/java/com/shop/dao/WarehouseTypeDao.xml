@@ -9,12 +9,43 @@
 
     <!--查询所有仓库类型-->
     <select id="queryAllWarehouseType" parameterType="list" resultType="WarehouseType">
-        select * from Warehouse_Type
+        select * from Warehouse_Type where state=1
     </select>
 
     <!--查询仓库类型总数-->
     <select id="queryCountWarehouseType" parameterType="list" resultType="int">
-        select count(*) from Warehouse_Type
+        select count(*) from Warehouse_Type where state=1
     </select>
+
+    <!--    根据编号修改类型-->
+    <update id="updateWarehouseTypeById" parameterType="WarehouseType">
+        update warehouse_Type set name=#{name} where id=#{id}
+    </update>
+
+    <!--    根据编号 查询仓库类型-->
+    <select id="queryWarehouseTypeById" parameterType="WarehouseType" resultType="WarehouseType">
+         select * from Warehouse_Type where id=#{id}
+    </select>
+
+    <!--    查询所有仓库类型 没有分页-->
+    <select id="queryAllWarehouseTypes" parameterType="list" resultType="WarehouseType">
+        select * from Warehouse_Type where state=1
+    </select>
+
+    <!--    仓库类型 添加-->
+    <insert id="addWarehouseType" parameterType="WarehouseType">
+        insert into Warehouse_Type value(null,#{name},1)
+    </insert>
+
+    <!--    根据编号 删除仓库（逻辑删除 0）-->
+    <delete id="delWarehouseTypeById" parameterType="int">
+        update Warehouse_Type set state=0 where id=#{id}
+    </delete>
+
+    <!--    根据类型编号 查询仓库是否存在-->
+    <select id="queryWarehouseTypeByName" parameterType="WarehouseType" resultType="WarehouseType">
+        select * from Warehouse_Type where name=#{name} and state=1
+    </select>
+
 
 </mapper>

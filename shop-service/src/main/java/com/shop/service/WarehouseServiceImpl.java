@@ -29,4 +29,28 @@ public class WarehouseServiceImpl implements WarehouseService
         pageVo.setTotal(warehouseDao.queryCountWarehouse());
         return pageVo;
     }
+
+    /**
+     * 根据编号 修改仓库信息
+     * @param warehouse
+     * @return
+     */
+    @Override
+    public int updateWarehouseById(Warehouse warehouse) {
+        return warehouseDao.updateWarehouseById(warehouse);
+    }
+
+    /**
+     * 仓库信息添加
+     * @param warehouse
+     * @return
+     */
+    @Override
+    public int addWarehouse(Warehouse warehouse) {
+        Warehouse warehouses=warehouseDao.queryWarehouseByName(warehouse.getName());
+        if (warehouses != null){
+            return 0;
+        }
+        return warehouseDao.addWarehouse(warehouse);
+    }
 }
