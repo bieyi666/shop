@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.EmpDao">
+
+    <select id="seEmp" resultMap="seEmpMap">
+        select * from emp_info
+        <where>
+            state = 0
+            <if test="conditions != null">
+                and (name like concat('%', #{conditions} ,'%')
+                or sex like concat('%', #{conditions} ,'%')
+                or address like concat('%', #{conditions} ,'%'))
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="seEmpMap" type="Emp">
+        <id column="id" property="id"></id>
+        <collection property="roles" javaType="ArrayList" ofType="Role"
+                    column="id" select="seEmpRole"/>
+    </resultMap>
+
+    <select id="seEmpRole" resultType="Role">
+        select r.id, name from emp_role e
+        join role_info r on e.rid = r.id
+        where eid = #{id};
+    </select>
+
+    <select id="seEmpCount" resultType="int">
+        select count(*) from emp_info
+        <where>
+            state = 0
+            <if test="conditions != null">
+                and (name like concat('%', #{conditions} ,'%')
+                or sex like concat('%', #{conditions} ,'%')
+                or address like concat('%', #{conditions} ,'%'))
+            </if>
+        </where>
+    </select>
+
+    <update id="upEmp">
+        update emp_info
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="img != null">
+                img = #{img}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="inEmp">
+        insert into emp_info(`name`, sex, age, phone, address, img, state)
+        values(#{name}, #{sex}, #{age}, #{phone}, #{address}, #{img}, 0);
+    </insert>
+
+    <update id="delEmp">
+        update emp_info set state = 1 where id = #{id};
+    </update>
+
+    <insert id="inEmpRole">
+        insert into emp_role(eid, rid) VALUES (#{eid}, #{rid});
+    </insert>
+
+    <delete id="delEmpRole">
+        delete from emp_role where eid = #{eid} and rid = #{rid}
+    </delete>
+</mapper>
