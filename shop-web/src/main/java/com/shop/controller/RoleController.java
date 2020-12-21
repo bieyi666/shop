@@ -25,8 +25,8 @@ public class RoleController {
     }
 
     @RequestMapping(value = "upRole.action")
-    public boolean upRole(String name) {
-        return roleService.upRole(name);
+    public boolean upRole(String name, Integer id) {
+        return roleService.upRole(name, id);
     }
 
     @RequestMapping(value = "inRole.action")
