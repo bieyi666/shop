@@ -32,7 +32,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public boolean upRole(String name) {
-        return roleDao.upRole(name) > 0;
+    public boolean upRole(String name, Integer id) {
+        return roleDao.upRole(name, id) > 0;
     }
 }

@@ -13,14 +13,19 @@ import java.util.List;
  * @author "can"
  */
 @RestController
+@CrossOrigin
 public class MenuController {
 
     @Autowired
     private MenuService menuService;
 
-    @CrossOrigin //跨域
     @RequestMapping("/seMenu.action")
     public List<Menu> seMenu() {
         return menuService.seMenu();
+    }
+
+    @RequestMapping("/seMenu1.action")
+    public List<Menu> seMenu1() {
+        return menuService.seMenu1();
     }
 }

@@ -16,4 +16,25 @@
         where parentId = #{id};
     </select>
 
+    <select id="seMenu1" resultMap="seMenuRM1">
+        select * from menu_info
+        where parentId = 0;
+    </select>
+    <resultMap id="seMenuRM1" type="Menu">
+        <id column="id" property="id"></id>
+        <collection property="children" javaType="ArrayList" ofType="Menu1" column="id" select="seMenuChildren1"/>
+        <collection property="children1" javaType="ArrayList" ofType="MenuBtn" column="id" select="seMenuChildren2"/>
+    </resultMap>
+    <select id="seMenuChildren1" resultMap="seMenuRM2">
+        select * from menu_info
+        where parentId = #{id};
+    </select>
+    <resultMap id="seMenuRM2" type="Menu1">
+        <id column="id" property="id"></id>
+        <collection property="children" javaType="ArrayList" ofType="MenuBtn" column="id" select="seMenuChildren2"/>
+    </resultMap>
+    <select id="seMenuChildren2" resultType="MenuBtn">
+        select * from menu_btn
+        where mid = #{id};
+    </select>
 </mapper>

@@ -8,12 +8,11 @@ import java.util.List;
  * @author "can"
  */
 @Data
-public class Menu {
+public class Menu1 {
     private Integer id;
     private String name;
     private String icon;
     private String url;
     private Integer parentId;
-    private List<Menu1> children;
-    private List<MenuBtn> children1;
+    private List<MenuBtn> children;
 }

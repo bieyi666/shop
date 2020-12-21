@@ -32,7 +32,8 @@ public interface RoleService {
     /**
      * 修改员工
      * @param name
+     * @param id
      * @return
      */
-    public boolean upRole(String name);
+    public boolean upRole(String name, Integer id);
 }

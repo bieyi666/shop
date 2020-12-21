@@ -15,7 +15,7 @@ public class ImageUpload {
      * @param path 存入的地址（可不填）
      * @return 图片名
      */
-    public String save_image(MultipartFile image, String path) {
+    public String save_image(MultipartFile image, String path, String path1) {
         // 图片名
         String image_name = null;
         // 用户选择了图片
@@ -29,6 +29,7 @@ public class ImageUpload {
             // 存入图片服务器
             try {
                 image.transferTo(new File(path, image_name));
+                image.transferTo(new File(path1, image_name));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -51,10 +52,12 @@ public class ImageUpload {
                             substring(image.getOriginalFilename().lastIndexOf("."));
 
             // 保存路径
-            String path = "D:\\upload\\";
+            String path = "D:\\作业\\电商项目\\shop\\shop-web\\src\\main\\webapp\\img\\";
+            String path1 = "D:\\作业\\电商项目\\shop\\shop-web\\target\\shop-web\\img\\";
             // 存入图片服务器
             try {
                 image.transferTo(new File(path, image_name));
+                image.transferTo(new File(path1, image_name));
             } catch (Exception e) {
                 e.printStackTrace();
             }

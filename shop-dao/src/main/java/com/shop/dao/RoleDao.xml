@@ -13,10 +13,10 @@
     </insert>
 
     <update id="upRole">
-        update role_info set name = #{name};
+        update role_info set name = #{name} where id = #{id};
     </update>
 
     <delete id="delRole">
-        delete from role_info where id = #{id}                                                                                                                                                                                                                                                                                                                                                                                                                         id = #{id}
+        delete from role_info where id = #{id}
     </delete>
 </mapper>

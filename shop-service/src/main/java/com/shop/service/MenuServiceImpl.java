@@ -20,4 +20,9 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> seMenu() {
         return menuDao.seMenu();
     }
+
+    @Override
+    public List<Menu> seMenu1() {
+        return menuDao.seMenu1();
+    }
 }
