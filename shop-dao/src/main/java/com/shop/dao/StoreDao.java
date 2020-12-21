@@ -11,4 +11,13 @@ public interface StoreDao {
      * @return
      */
     public StoreInfo queryStoreByUid(int uid);
+
+    /**
+     * 根据商户编号 修改商户信息
+     * @param storeInfo
+     * @return
+     */
+    public int updateStoreInfoBySid(StoreInfo storeInfo);
+
+
 }

@@ -22,4 +22,14 @@ public class StoreServiceImpl implements StoreService
     public StoreInfo queryStoreByUid(int uid) {
         return storeDao.queryStoreByUid(uid);
     }
+
+    /**
+     * 根据商户编号 修改商户信息
+     * @param storeInfo
+     * @return
+     */
+    @Override
+    public int updateStoreInfoBySid(StoreInfo storeInfo) {
+        return storeDao.updateStoreInfoBySid(storeInfo);
+    }
 }

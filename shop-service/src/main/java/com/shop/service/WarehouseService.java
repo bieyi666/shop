@@ -29,4 +29,12 @@ public interface WarehouseService {
      * @return
      */
     public int addWarehouse(Warehouse warehouse);
+
+    /**
+     * 根据编号 查询仓库信息
+     * @param id
+     * @return
+     */
+    public Warehouse queryWarehouseById(int id);
+
 }

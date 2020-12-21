@@ -19,4 +19,20 @@ public interface WarehouseGoodsService {
      * @return
      */
     public PageVo<WarehouseGoods> queryWarehouseGoodsByGroup(int page,int rows);
+
+    /**
+     * 添加仓库商品
+     * @param warehouseGoods
+     * @return
+     */
+    public int addWarehouseGoods(WarehouseGoods warehouseGoods);
+
+
+    /**
+     * 条件查询
+     * @param warehouseGoods
+     * @return
+     */
+    public List<WarehouseGoods> queryWarehouseGoodsById(WarehouseGoods warehouseGoods);
+
 }

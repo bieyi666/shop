@@ -53,4 +53,14 @@ public class WarehouseServiceImpl implements WarehouseService
         }
         return warehouseDao.addWarehouse(warehouse);
     }
+
+    /**
+     * 根据编号 查询仓库信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Warehouse queryWarehouseById(int id) {
+        return warehouseDao.queryWarehouseById(id);
+    }
 }

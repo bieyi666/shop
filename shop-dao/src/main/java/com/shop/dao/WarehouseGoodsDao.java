@@ -30,4 +30,33 @@ public interface WarehouseGoodsDao {
      * @return
      */
     public int queryCountWarehouseGoodsByGroup();
+
+
+    /**
+     * 添加仓库商品
+     * @param warehouseGoods
+     * @return
+     */
+    public int addWarehouseGoods(WarehouseGoods warehouseGoods);
+
+    /**
+     * 修改库存
+     * @param warehouseGoods
+     * @return
+     */
+    public int updateWarehouseGoods(WarehouseGoods warehouseGoods);
+
+    /**
+     * 条件查询
+     * @param warehouseGoods
+     * @return
+     */
+    public List<WarehouseGoods> queryWarehouseGoodsById(WarehouseGoods warehouseGoods);
+
+    /**
+     * 条件查询
+     * @param warehouseGoods
+     * @return
+     */
+    public List<WarehouseGoods> queryWarehouseGoodsByIds(WarehouseGoods warehouseGoods);
 }
