@@ -51,8 +51,9 @@ public class ImageUpload {
                     image.getOriginalFilename().
                             substring(image.getOriginalFilename().lastIndexOf("."));
 
-            // 保存路径
+            // 保存路径 项目路径
             String path = "D:\\作业\\电商项目\\shop\\shop-web\\src\\main\\webapp\\img\\";
+            // 项目运行路径
             String path1 = "D:\\作业\\电商项目\\shop\\shop-web\\target\\shop-web\\img\\";
             // 存入图片服务器
             try {
