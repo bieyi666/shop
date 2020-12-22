@@ -34,5 +34,15 @@
         </where>
     </select>
 
+    <select id="queryAllzhu" resultType="CommodityType">
+        SELECT * FROM commodity_type WHERE ter=0
+    </select>
 
+    <select id="queryAllzho" parameterType="int" resultType="CommodityType">
+        SELECT * FROM commodity_type WHERE tsan=0 AND ter=#{ter}
+    </select>
+
+    <select id="queryAllci" parameterType="int" resultType="CommodityType">
+        SELECT * FROM commodity_type WHERE ter=1000 AND tsan=#{tsan}
+    </select>
 </mapper>
