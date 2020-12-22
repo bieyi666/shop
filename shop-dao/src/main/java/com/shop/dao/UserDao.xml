@@ -11,9 +11,9 @@
     <select id="queryAllUser" parameterType="UserInfo" resultType="userInfo">
         select * from user_info
         <where>
-            <if test="uName!=null and uName!='' ">uName=#{uName}</if>
-            <if test="phone!=null and phone!='' ">and phone=#{phone}</if>
-            <if test="uId!=null and uId!='' ">and uId=#{uId}</if>
+            <if test="uName!=null and uName!='' ">uName like '%${uName}%'</if>
+            <if test="phone!=null and phone!='' ">and phone like '%${phone}%'</if>
+            <if test="uid!=null and uid!='' ">and uId like '%${uId}%'</if>
         </where>
     </select>
 
@@ -21,9 +21,9 @@
     <select id="queryCountUser" parameterType="UserInfo" resultType="int">
         select count(*) from user_info
         <where>
-            <if test="uName!=null and uName!='' ">uName=#{uName}</if>
-            <if test="phone!=null and phone!='' ">and phone=#{phone}</if>
-            <if test="uId!=null and uId!='' ">and uId=#{uId}</if>
+            <if test="uName!=null and uName!='' ">uName like '%${uName}%'</if>
+            <if test="phone!=null and phone!='' ">and phone like '%${phone}%'</if>
+            <if test="uid!=null and uid!='' ">and uId like '%${uId}%'</if>
         </where>
     </select>
     <!--查询当前手机号码是否存在-->

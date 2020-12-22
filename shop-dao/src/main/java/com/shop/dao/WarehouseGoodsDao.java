@@ -30,4 +30,11 @@ public interface WarehouseGoodsDao {
      * @return
      */
     public int queryCountWarehouseGoodsByGroup();
+
+    /**
+     * 根据商品编号 查询商品库存
+     * @param cid
+     * @return
+     */
+    public WarehouseGoods queryWarehouseGoodsByCid(int cid);
 }

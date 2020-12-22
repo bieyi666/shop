@@ -39,4 +39,9 @@
     <select id="queryCountWarehouseGoodsByGroup" parameterType="list" resultType="int">
         SELECT COUNT(*) FROM  (SELECT cid FROM warehouse_goods GROUP BY cid) warehouse_goods
     </select>
+
+    <!-- 根据商品编号 查询商品库存 -->
+    <select id="queryWarehouseGoodsByCid" parameterType="WarehouseGoods" resultType="WarehouseGoods">
+        SELECT cid,SUM(`stock`) AS stock FROM `warehouse_goods` WHERE cid=#{cid} GROUP BY cid
+    </select>
 </mapper>

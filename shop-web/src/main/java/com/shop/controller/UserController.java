@@ -34,6 +34,7 @@ public class UserController {
     @ResponseBody
     public PageVo<UserInfo> queryAllUser(UserInfo userInfo,@RequestParam(value = "page",defaultValue = "1") int page,
                                          @RequestParam(value = "rows",defaultValue = "5") int rows) {
+        System.out.println(userInfo);
         return userService.queryAllUser(userInfo,page,rows);
     }
 
@@ -98,9 +99,16 @@ public class UserController {
     @ResponseBody
     public Map queryerUserInfo(UserInfo userInfo,HttpSession session){
         Map<String,String> map =new HashMap<String,String>();
-        Md5Hash md5Hash=new Md5Hash(userInfo.getPassword(),"哥谭市",5);
-        userInfo.setPassword(md5Hash+"");
-        System.out.println(md5Hash);
+        System.out.println(1);
+        //判断密码是否为空
+        if(userInfo.getPassword()!=null){
+            //md5加密
+            Md5Hash md5Hash=new Md5Hash(userInfo.getPassword(),"哥谭市",5);
+            userInfo.setPassword(md5Hash+"");
+            System.out.println(3);
+            /*System.out.println(md5Hash);*/
+        }
+        //调用查询方法
         UserInfo userInfo1=userService.queryerUserInfo(userInfo);
         System.out.println("拿到数据"+userInfo);
         if(userInfo1!=null){
@@ -121,10 +129,12 @@ public class UserController {
     @ResponseBody
     public Map insertUserInfo(UserInfo userInfo){
         Map<String,String> map =new HashMap<String,String>();
+        //md5加密
         Md5Hash md5Hash=new Md5Hash(userInfo.getPassword(),"哥谭市",5);
         System.out.println(md5Hash);
         userInfo.setPassword(md5Hash+"");
         System.out.println(userInfo);
+        //调用添加方法
         int num=userService.insertUserInfo(userInfo);
         if(num==1){
             map.put("code","0");

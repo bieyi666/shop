@@ -11,6 +11,11 @@
         <collection property="commodityType" ofType="commodityType"
                     javaType="commodityType" select="com.shop.dao.CommodityTypeDao.queryCommodityTypeByCid"
                     column="cid"></collection>
+
+        <collection property="warehouseGoods" ofType="warehouseGoods"
+                    javaType="warehouseGoods" select="com.shop.dao.WarehouseGoodsDao.queryWarehouseGoodsByCid"
+                    column="cid">
+        </collection>
     </resultMap>
     <!--根据条件查询所有商品-->
     <select id="queryAllCommodity" parameterType="Commodity" resultMap="queryAll">
@@ -64,13 +69,8 @@
         </where>
     </select>
 
-    <!--    根据商品编号 修改商品信息-->
-    <update id="updateCommodityByPid" parameterType="Commodity">
-        update Commodity set cname=#{cName},purchasePrice=#{purchasePrice}
-        where id=#{id}
-    </update>
 
-    <!--  ❗❗❗❗  上面为供货商代码 不可修改 可使用———————————————————————————————————————————————————————————————————— -->
+    <!--  ❗❗❗❗  上面为供货商代码———————————————————————————————————————————————————————————————————— -->
 
 
     <!--删除商品   （逻辑删除）-->
@@ -87,9 +87,14 @@
     </insert>
 
     <!--    根据编号 查询商品信息-->
-    <select id="queryCommodityById" parameterType="Commodity" resultType="Commodity">
-        select * from Commodity where cid=#{id}
+    <select id="queryCommodityById" parameterType="int" resultType="Commodity">
+        select * from commodity where cid=#{cid}
     </select>
-
+    <select id="queryAllCommodityer" parameterType="Commodity" resultType="Commodity">
+        select * from commodity
+        <where>
+            <if test="price !=null and price != '' ">price=#{price}</if>
+        </where>
+    </select>
 
 </mapper>

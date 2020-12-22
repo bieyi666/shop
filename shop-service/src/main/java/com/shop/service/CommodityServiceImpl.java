@@ -7,6 +7,8 @@ import com.shop.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 //商品
 @Service
 public class CommodityServiceImpl implements CommodityService
@@ -38,6 +40,15 @@ public class CommodityServiceImpl implements CommodityService
     public int updateCommodityByPid(Commodity commodity) {
         return commodityDao.updateCommodityByPid(commodity);
     }
-
+    //根据类型查询
+    @Override
+    public List<Commodity> queryAllCommodityer(Commodity commodity) {
+        return commodityDao.queryAllCommodityer(commodity);
+    }
+    //根据id查询单条
+    @Override
+    public Commodity queryCommodityById(int cid) {
+        return commodityDao.queryCommodityById(cid);
+    }
     //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
 }

@@ -24,6 +24,18 @@ public interface CommodityService {
     public int updateCommodityByPid(Commodity commodity);
 
     //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
+    /**
+     * 查询所以商品以及库存
+     * @param commodity
+     * @return
+     */
+    public List<Commodity>  queryAllCommodityer(Commodity commodity);
 
+    /**
+     * 根据编号 查询商品
+     * @param cid
+     * @return
+     */
+    public Commodity queryCommodityById(int cid);
 
 }
