@@ -9,12 +9,25 @@
 
     <!--查询所有仓库类型-->
     <select id="queryAllWarehouseType" parameterType="list" resultType="WarehouseType">
-        select * from Warehouse_Type where state=1
+        select * from Warehouse_Type
+         <where>
+             <if test="name != '' and name !=null">
+                 name like '%${name}%'
+             </if>
+             and  state=1
+         </where>
+
     </select>
 
     <!--查询仓库类型总数-->
     <select id="queryCountWarehouseType" parameterType="list" resultType="int">
-        select count(*) from Warehouse_Type where state=1
+        select count(*) from Warehouse_Type
+        <where>
+            <if test="name != '' and name !=null">
+                name like '%${name}%'
+            </if>
+            and  state=1
+        </where>
     </select>
 
     <!--    根据编号修改类型-->

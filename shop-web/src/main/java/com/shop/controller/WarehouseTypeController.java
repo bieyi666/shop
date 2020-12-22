@@ -30,9 +30,10 @@ public class WarehouseTypeController {
     @CrossOrigin //跨域
     @RequestMapping("/queryAllWarehouseType.action")
     @ResponseBody
-    public PageVo<WarehouseType> queryAllWarehouseType(@RequestParam(value = "page",defaultValue = "1") int page,
+    public PageVo<WarehouseType> queryAllWarehouseType(WarehouseType warehouseType,
+                                                       @RequestParam(value = "page",defaultValue = "1") int page,
                                                        @RequestParam(value = "rows",defaultValue = "5") int rows) {
-        return warehouseTypeService.queryAllWarehouseType(page,rows);
+        return warehouseTypeService.queryAllWarehouseType(warehouseType,page,rows);
     }
 
     /**

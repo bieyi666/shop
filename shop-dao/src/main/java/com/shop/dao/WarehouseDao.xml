@@ -15,12 +15,26 @@
 
     <!--查询所有仓库信息-->
     <select id="queryAllWarehouse" parameterType="list" resultMap="queryAll">
-        select * from Warehouse where state=1
+        select * from Warehouse
+         <where>
+             <if test="name != '' and name != null">
+                 name like '%${name}%'
+             </if>
+             and state=1
+         </where>
+
     </select>
 
     <!--查询总仓库数-->
     <select id="queryCountWarehouse" parameterType="list" resultType="int">
-        select count(*) from Warehouse where state=1
+        select count(*) from Warehouse
+        <where>
+            <if test="name != '' and name != null">
+                name like '%${name}%'
+            </if>
+            and state=1
+        </where>
+
     </select>
 
     <!--    根据编号 修改仓库信息-->

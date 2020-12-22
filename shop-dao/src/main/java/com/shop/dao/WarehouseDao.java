@@ -11,13 +11,13 @@ public interface WarehouseDao {
      * 查询所有仓库信息
      * @return
      */
-    public List<Warehouse> queryAllWarehouse();
+    public List<Warehouse> queryAllWarehouse(Warehouse warehouse);
 
     /**
      * 查询仓库总数
      * @return
      */
-    public int queryCountWarehouse();
+    public int queryCountWarehouse(Warehouse warehouse);
 
 
     /**

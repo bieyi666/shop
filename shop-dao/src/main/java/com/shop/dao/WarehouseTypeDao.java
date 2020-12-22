@@ -12,13 +12,13 @@ public interface WarehouseTypeDao {
      * 查询所有仓库类型
      * @return
      */
-    public List<WarehouseType> queryAllWarehouseType();
+    public List<WarehouseType> queryAllWarehouseType(WarehouseType warehouseType);
 
     /**
      * 查询仓库类型总数
      * @return
      */
-    public int queryCountWarehouseType();
+    public int queryCountWarehouseType(WarehouseType warehouseType);
 
     /**
      * 根据编号修改仓库类型
