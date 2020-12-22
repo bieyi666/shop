@@ -35,4 +35,19 @@ public class RoleServiceImpl implements RoleService {
     public boolean upRole(String name, Integer id) {
         return roleDao.upRole(name, id) > 0;
     }
+
+    @Override
+    public List<Integer> seRolePer(Integer id) {
+        return roleDao.seRolePer(id);
+    }
+
+    @Override
+    public boolean inRolePer(Integer rid, Integer mid) {
+        return roleDao.inRolePer(rid, mid) > 0;
+    }
+
+    @Override
+    public boolean delRolePer(Integer rid, Integer mid) {
+        return roleDao.delRolePer(rid, mid) > 0;
+    }
 }

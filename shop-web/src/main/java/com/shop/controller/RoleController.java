@@ -38,4 +38,19 @@ public class RoleController {
     public boolean delRole(Integer id) {
         return roleService.delRole(id);
     }
+
+    @RequestMapping(value = "seRolePer.action")
+    public List<Integer> seRolePer(Integer id) {
+        return roleService.seRolePer(id);
+    }
+
+    @RequestMapping(value = "inRolePer.action")
+    public boolean inRolePer(Integer rid, Integer mid) {
+        return roleService.inRolePer(rid, mid);
+    }
+
+    @RequestMapping(value = "delRolePer.action")
+    public boolean delRolePer(Integer rid, Integer mid) {
+        return roleService.delRolePer(rid, mid);
+    }
 }
