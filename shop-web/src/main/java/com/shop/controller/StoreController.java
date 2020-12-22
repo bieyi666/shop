@@ -44,7 +44,7 @@ public class StoreController {
     @ResponseBody
     public int updateStoreInfoBySid(HttpServletRequest request,StoreInfo storeInfo, MultipartFile image) {
         ImageUpload imageUpload=new ImageUpload();
-        imageUpload.save_images(image);
+        imageUpload.save_image(image);
         return storeService.updateStoreInfoBySid(storeInfo);
     }
 
