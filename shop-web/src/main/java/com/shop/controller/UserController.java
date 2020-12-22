@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import com.shop.service.UserService;
+import com.shop.utils.ImageUpload;
 import com.shop.vo.PageVo;
 import com.shop.vo.UserInfo;
 import org.apache.shiro.crypto.hash.Md5Hash;

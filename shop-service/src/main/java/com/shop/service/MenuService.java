@@ -14,4 +14,10 @@ public interface MenuService {
      * @return
      */
     public List<Menu> seMenu();
+
+    /**
+     * 查询菜单1
+     * @return
+     */
+    public List<Menu> seMenu1();
 }

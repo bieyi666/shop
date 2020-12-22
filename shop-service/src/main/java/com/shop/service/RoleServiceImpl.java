@@ -20,4 +20,19 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> seRole() {
         return roleDao.seRole();
     }
+
+    @Override
+    public boolean inRole(String name) {
+        return roleDao.inRole(name) > 0;
+    }
+
+    @Override
+    public boolean delRole(Integer id) {
+        return roleDao.delRole(id) > 0;
+    }
+
+    @Override
+    public boolean upRole(String name, Integer id) {
+        return roleDao.upRole(name, id) > 0;
+    }
 }

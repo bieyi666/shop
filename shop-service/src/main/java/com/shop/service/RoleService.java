@@ -14,4 +14,26 @@ public interface RoleService {
      * @return
      */
     public List<Role> seRole();
+
+    /**
+     * 添加角色
+     * @param name
+     * @return
+     */
+    public boolean inRole(String name);
+
+    /**
+     * 删除角色
+     * @param id
+     * @return
+     */
+    public boolean delRole(Integer id);
+
+    /**
+     * 修改员工
+     * @param name
+     * @param id
+     * @return
+     */
+    public boolean upRole(String name, Integer id);
 }

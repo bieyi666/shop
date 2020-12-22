@@ -14,5 +14,6 @@ public class Menu {
     private String icon;
     private String url;
     private Integer parentId;
-    private List<Menu> children;
+    private List<Menu1> children;
+    private List<MenuBtn> children1;
 }

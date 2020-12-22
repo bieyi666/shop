@@ -40,8 +40,38 @@
         SELECT COUNT(*) FROM  (SELECT cid FROM warehouse_goods GROUP BY cid) warehouse_goods
     </select>
 
-    <!-- 根据商品编号 查询商品库存 -->
-    <select id="queryWarehouseGoodsByCid" parameterType="WarehouseGoods" resultType="WarehouseGoods">
-        SELECT cid,SUM(`stock`) AS stock FROM `warehouse_goods` WHERE cid=#{cid} GROUP BY cid
+    <!--    添加仓库商品-->
+    <insert id="addWarehouseGoods" parameterType="warehouseGoods">
+        insert into warehouse_Goods value(null,#{cId},#{wId},#{stock})
+    </insert>
+
+    <update id="updateWarehouseGoods" parameterType="warehouseGoods">
+        update warehouse_Goods set stock=stock+#{stock} where wid=#{wId} and cid=#{cId}
+    </update>
+
+    <select id="queryWarehouseGoodsById" parameterType="warehouseGoods" resultType="warehouseGoods">
+        select SUM(stock) AS stock from warehouse_Goods
+         <where>
+             <!--<if test="cId != null and cId != 0">
+                 cid=#{cId}
+             </if>-->
+             <if test="wId != null and wId != 0">
+                 and wid=#{wId}
+             </if>
+         </where>
+
+    </select>
+
+    <select id="queryWarehouseGoodsByIds" parameterType="warehouseGoods" resultType="warehouseGoods">
+        select * from warehouse_Goods
+        <where>
+            <if test="cId != null and cId != 0">
+                cid=#{cId}
+            </if>
+            <if test="wId != null and wId != 0">
+                and wid=#{wId}
+            </if>
+        </where>
+
     </select>
 </mapper>

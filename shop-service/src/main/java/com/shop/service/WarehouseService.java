@@ -14,7 +14,7 @@ public interface WarehouseService {
      * @param rows 一页展示多少条数据
      * @return
      */
-    public PageVo<Warehouse> queryAllWarehouse(int page,int rows);
+    public PageVo<Warehouse> queryAllWarehouse(Warehouse warehouse,int page,int rows);
 
     /**
      * 根据编号 修改仓库信息
@@ -29,4 +29,12 @@ public interface WarehouseService {
      * @return
      */
     public int addWarehouse(Warehouse warehouse);
+
+    /**
+     * 根据编号 查询仓库信息
+     * @param id
+     * @return
+     */
+    public Warehouse queryWarehouseById(int id);
+
 }

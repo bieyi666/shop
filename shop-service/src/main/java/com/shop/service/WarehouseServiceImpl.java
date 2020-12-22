@@ -22,11 +22,11 @@ public class WarehouseServiceImpl implements WarehouseService
      * @return
      */
     @Override
-    public PageVo<Warehouse> queryAllWarehouse(int page, int rows) {
+    public PageVo<Warehouse> queryAllWarehouse(Warehouse warehouse,int page, int rows) {
         PageVo<Warehouse> pageVo=new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setRows(warehouseDao.queryAllWarehouse());
-        pageVo.setTotal(warehouseDao.queryCountWarehouse());
+        pageVo.setRows(warehouseDao.queryAllWarehouse(warehouse));
+        pageVo.setTotal(warehouseDao.queryCountWarehouse(warehouse));
         return pageVo;
     }
 
@@ -52,5 +52,15 @@ public class WarehouseServiceImpl implements WarehouseService
             return 0;
         }
         return warehouseDao.addWarehouse(warehouse);
+    }
+
+    /**
+     * 根据编号 查询仓库信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Warehouse queryWarehouseById(int id) {
+        return warehouseDao.queryWarehouseById(id);
     }
 }

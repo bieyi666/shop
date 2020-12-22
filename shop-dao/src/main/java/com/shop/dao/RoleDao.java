@@ -1,8 +1,10 @@
 package com.shop.dao;
 
 import com.shop.vo.Role;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author "can"
@@ -14,4 +16,27 @@ public interface RoleDao {
      * @return
      */
     public List<Role> seRole();
+
+    /**
+     * 添加角色
+     * @param name
+     * @return
+     */
+    public int inRole(String name);
+
+    /**
+     * 删除角色
+     * @param id
+     * @return
+     */
+    public int delRole(Integer id);
+
+    /**
+     * 修改员工
+     * @param name
+     * @param id
+     * @return
+     */
+    public int upRole(@Param("name") String name,@Param("id") Integer id);
+
 }

@@ -13,14 +13,29 @@ import java.util.List;
  * @author "can"
  */
 @RestController
+@CrossOrigin
 public class RoleController {
 
     @Autowired
     private RoleService roleService;
 
-    @CrossOrigin
     @RequestMapping(value = "seRole.action")
     public List<Role> seRole() {
         return roleService.seRole();
+    }
+
+    @RequestMapping(value = "upRole.action")
+    public boolean upRole(String name, Integer id) {
+        return roleService.upRole(name, id);
+    }
+
+    @RequestMapping(value = "inRole.action")
+    public boolean inRole(String name) {
+        return roleService.inRole(name);
+    }
+
+    @RequestMapping(value = "delRole.action")
+    public boolean delRole(Integer id) {
+        return roleService.delRole(id);
     }
 }

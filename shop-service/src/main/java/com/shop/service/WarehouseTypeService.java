@@ -14,7 +14,7 @@ public interface WarehouseTypeService {
      * @param rows 一页总条数
      * @return
      */
-    public PageVo<WarehouseType> queryAllWarehouseType(int page, int rows);
+    public PageVo<WarehouseType> queryAllWarehouseType(WarehouseType warehouseType,int page, int rows);
 
     /**
      * 根据编号修改仓库类型

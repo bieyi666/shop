@@ -29,11 +29,11 @@ public class WarehouseTypeServiceImpl implements WarehouseTypeService
      * @return
      */
     @Override
-    public PageVo<WarehouseType> queryAllWarehouseType(int page, int rows) {
+    public PageVo<WarehouseType> queryAllWarehouseType(WarehouseType warehouseType,int page, int rows) {
         PageVo<WarehouseType> pageVo=new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setRows(warehouseTypeDao.queryAllWarehouseType());
-        pageVo.setTotal(warehouseTypeDao.queryCountWarehouseType());
+        pageVo.setRows(warehouseTypeDao.queryAllWarehouseType(warehouseType));
+        pageVo.setTotal(warehouseTypeDao.queryCountWarehouseType(warehouseType));
         return pageVo;
     }
 

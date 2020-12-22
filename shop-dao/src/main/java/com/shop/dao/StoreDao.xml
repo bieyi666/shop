@@ -12,4 +12,70 @@
         select * from store_info where uid=#{uid}
     </select>
 
+    <update id="updateStoreInfoBySid" parameterType="storeInfo">
+        update store_Info set phone=#{phone},photo=#{photo} where storeid=#{storeId}
+    </update>
+
+
+    <!--    商户申请-->
+    <!--    public int storeApply(StoreInfo storeInfo);-->
+    <insert id="storeApply" parameterType="storeInfo">
+        INSERT INTO `store_info` (
+              `uid`,`name`,`phone`,`address`,`photo`,`state`,`msg`
+              )
+            VALUES
+              (
+                #{uid},
+                #{name},
+                #{phone},
+                #{address},
+                #{photo},
+                #{state},
+                #{msg}
+              ) ;
+    </insert>
+
+
+    <!--    查询所有商户申请-->
+    <!--    public List<StoreInfo> queryStoreApply(StoreInfo storeInfo);-->
+    <select id="queryStoreApply" resultType="storeInfo" parameterType="storeInfo">
+        SELECT * FROM store_info
+        <where>
+            state=0
+        </where>
+    </select>
+    <!--    查询所有商户申请数量-->
+    <!--     public int queryStoreApplyCount(StoreInfo storeInfo);-->
+    <select id="queryStoreApplyCount" resultType="int" parameterType="storeInfo">
+        SELECT count(*) FROM store_info
+        <where>
+            state=0
+        </where>
+    </select>
+    <!--   商户申请审批-->
+    <!--    public int applyAudit(@Param("storeid") int storeid, @Param("results") int results);-->
+    <update id="applyAudit">
+        UPDATE
+          `store_info`
+        SET
+          `state` = #{results}
+        WHERE `storeid` = #{storeid}
+    </update>
+
+    <!--查询所有在售商户-->
+    <!--    public List<StoreInfo> queryAllStore(StoreInfo storeInfo);-->
+    <select id="queryAllStore" resultType="storeInfo" parameterType="storeInfo">
+        SELECT * FROM store_info
+        <where>
+            state=1
+        </where>
+    </select>
+    <!--    查询所有在售商户数量-->
+    <!--public int queryAllStoreCount(StoreInfo storeInfo);-->
+    <select id="queryAllStoreCount" resultType="int" parameterType="storeInfo">
+        SELECT count(*) FROM store_info
+        <where>
+            state=1
+        </where>
+    </select>
 </mapper>
