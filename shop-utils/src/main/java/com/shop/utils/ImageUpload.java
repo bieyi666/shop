@@ -31,7 +31,9 @@ public class ImageUpload {
             ServletContext servletContext = webApplicationContext.getServletContext();
 
             //编译文件 img 绝对路径
-            String path=servletContext.getRealPath("/img");
+            String path = servletContext.getRealPath("/img").
+                    replace("target\\shop-web\\img",
+                            "src\\main\\webapp\\img");
 
             // 存入图片服务器
             try {
