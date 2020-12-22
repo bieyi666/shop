@@ -2,6 +2,8 @@ package com.shop.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 //用户实体
 @Data
 public class UserInfo {
@@ -10,4 +12,6 @@ public class UserInfo {
     private String phone; //号码
     private String password; //密码
     private String photo; //图片
+
+    private List<OrderInfo> orderInfo;
 }
