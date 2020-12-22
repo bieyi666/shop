@@ -40,7 +40,8 @@ public class WarehouseGoodsController {
     @CrossOrigin //跨域
     @RequestMapping("/queryWarehouseGoodsByGroup.action")
     @ResponseBody
-    public PageVo<WarehouseGoods> queryWarehouseGoodsByGroup(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageVo<WarehouseGoods> queryWarehouseGoodsByGroup(
+                                                             @RequestParam(value = "page", defaultValue = "1") int page,
                                                              @RequestParam(value = "rows", defaultValue = "5") int rows) {
         return warehouseGoodsService.queryWarehouseGoodsByGroup(page,rows);
     }

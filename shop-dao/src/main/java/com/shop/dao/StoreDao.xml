@@ -13,7 +13,7 @@
     </select>
 
     <update id="updateStoreInfoBySid" parameterType="storeInfo">
-        update store_Info set phone=#{phone},photo=#{photo} where storeid=#{storeid}
+        update store_Info set phone=#{phone},photo=#{photo} where storeid=#{storeId}
     </update>
 
 </mapper>

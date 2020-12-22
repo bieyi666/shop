@@ -28,9 +28,9 @@ public class WarehouseController {
     @CrossOrigin //跨域
     @RequestMapping("/queryAllWarehouse.action")
     @ResponseBody
-    public PageVo<Warehouse> queryAllWarehouse(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageVo<Warehouse> queryAllWarehouse(Warehouse warehouse,@RequestParam(value = "page", defaultValue = "1") int page,
                                                @RequestParam(value = "rows", defaultValue = "5") int rows) {
-        return warehouseService.queryAllWarehouse(page, rows);
+        return warehouseService.queryAllWarehouse(warehouse,page, rows);
     }
 
     /**

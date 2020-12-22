@@ -42,10 +42,15 @@ public class StoreController {
     @CrossOrigin //跨域
     @RequestMapping("/updateStoreInfoBySid.action")
     @ResponseBody
-    public int updateStoreInfoBySid(HttpServletRequest request,StoreInfo storeInfo, MultipartFile image) {
+    public String updateStoreInfoBySid(StoreInfo storeInfo, MultipartFile image) {
         ImageUpload imageUpload=new ImageUpload();
-        imageUpload.save_image(image);
-        return storeService.updateStoreInfoBySid(storeInfo);
+        String img=imageUpload.save_image(image);
+        storeInfo.setPhoto(img);
+        int num=storeService.updateStoreInfoBySid(storeInfo);
+        if (num>0){
+            return "修改成功";
+        }
+        return "修改失败";
     }
 
 }
