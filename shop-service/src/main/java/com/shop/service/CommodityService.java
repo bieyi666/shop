@@ -37,5 +37,10 @@ public interface CommodityService {
      * @return
      */
     public Commodity queryCommodityById(int cid);
-
+    /**
+     * 模糊查询商品
+     * @param commodity
+     * @return
+     */
+    public List<Commodity> queryAllCommoditysan(Commodity commodity);
 }

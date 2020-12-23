@@ -53,4 +53,11 @@ public interface CommodityDao {
      */
     public List<Commodity>  queryAllCommodityer(Commodity commodity);
 
+    /**
+     * 模糊查询商品
+     * @param commodity
+     * @return
+     */
+    public List<Commodity> queryAllCommoditysan(Commodity commodity);
+
 }

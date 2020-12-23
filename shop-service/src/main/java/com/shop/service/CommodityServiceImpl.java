@@ -50,5 +50,10 @@ public class CommodityServiceImpl implements CommodityService
     public Commodity queryCommodityById(int cid) {
         return commodityDao.queryCommodityById(cid);
     }
+    //模糊查询商品
+    @Override
+    public List<Commodity> queryAllCommoditysan(Commodity commodity) {
+        return commodityDao.queryAllCommoditysan(commodity);
+    }
     //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
 }

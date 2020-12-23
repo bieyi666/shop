@@ -12,10 +12,10 @@
                     javaType="commodityType" select="com.shop.dao.CommodityTypeDao.queryCommodityTypeByCid"
                     column="cid"></collection>
 
-<!--        <collection property="warehouseGoods" ofType="warehouseGoods"
+        <collection property="warehouseGoods" ofType="warehouseGoods"
                     javaType="warehouseGoods" select="com.shop.dao.WarehouseGoodsDao.queryWarehouseGoodsByCid"
                     column="cid">
-        </collection>-->
+        </collection>
     </resultMap>
     <!--根据条件查询所有商品-->
     <select id="queryAllCommodity" parameterType="Commodity" resultMap="queryAll">
@@ -96,11 +96,17 @@
     <select id="queryCommodityById" parameterType="int" resultType="Commodity">
         select * from commodity where cid=#{cid}
     </select>
+    <!---->
     <select id="queryAllCommodityer" parameterType="Commodity" resultType="Commodity">
         select * from commodity
         <where>
             <if test="price !=null and price != '' ">price=#{price}</if>
         </where>
     </select>
-
+    <select id="queryAllCommoditysan" parameterType="Commodity" resultType="Commodity">
+        select * from commodity
+        <where>
+            <if test="cName!=null and cName!= '' ">cName like '%${cName}%' </if>
+        </where>
+    </select>
 </mapper>
