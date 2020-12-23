@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 //商品
 @Controller
 public class CommodityController {
@@ -46,4 +48,16 @@ public class CommodityController {
     }
 
     //上面为供货商代码  不可修改 可使用————————————————————————————————————————————————————————————————————
+
+    /**
+     * 根据条件查询单条
+     * @param cid
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryCommodityById.action")
+    @ResponseBody
+    public Commodity queryCommodityById(int cid){
+        return  commodityService.queryCommodityById(cid);
+    }
 }

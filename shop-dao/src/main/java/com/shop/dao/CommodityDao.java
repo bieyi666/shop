@@ -32,7 +32,7 @@ public interface CommodityDao {
 
 
     /**
-     *根据商品编号删除商品（修改状态）
+     *修改属性状态调整上下架
      * @param id 商品编号
      * @return
      */
@@ -40,10 +40,17 @@ public interface CommodityDao {
 
     /**
      * 根据编号 查询商品
-     * @param id
+     * @param cid
      * @return
      */
-    public Commodity queryCommodityById(int id);
+    public Commodity queryCommodityById(int cid);
 
+
+    /**
+     * 查询所以商品以及库存
+     * @param commodity
+     * @return
+     */
+    public List<Commodity>  queryAllCommodityer(Commodity commodity);
 
 }

@@ -19,4 +19,17 @@
     <delete id="delRole">
         delete from role_info where id = #{id}
     </delete>
+
+    <select id="seRolePer" resultType="int">
+        select mid from role_menu
+        where rid = #{rid}
+    </select>
+
+    <insert id="inRolePer">
+        insert into role_menu(rid, mid) values (#{rid}, #{mid})
+    </insert>
+
+    <delete id="delRolePer">
+        delete from role_menu where rid = #{rid} and mid = #{mid}
+    </delete>
 </mapper>

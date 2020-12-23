@@ -28,5 +28,36 @@ public class CommodityTypeController {
     public List<CommodityType> queryAllCommodityType(CommodityType commodityType) {
         return commodityTypeService.queryAllCommodityType(commodityType);
     }
-
+    /**
+     * 查询所有主类型
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryAllzhu.action")
+    @ResponseBody
+    public List<CommodityType> queryAllzhu( ) {
+        return commodityTypeService.queryAllzhu();
+    }
+    /**
+     * 根据查询所有中类型
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryAllzho.action")
+    @ResponseBody
+    public List<CommodityType> queryAllzho(int ter) {
+        System.out.println("中的"+ter);
+        return commodityTypeService.queryAllzho(ter);
+    }
+    /**
+     * 根据查询所有次类型
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryAllci.action")
+    @ResponseBody
+    public List<CommodityType> queryAllci(int tsan) {
+        System.out.println("次的"+tsan);
+        return commodityTypeService.queryAllci(tsan);
+    }
 }
