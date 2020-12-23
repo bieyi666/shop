@@ -8,7 +8,7 @@
 <mapper namespace="com.shop.dao.CommodityTypeDao">
 
     <!--    根据商品编号 查询商品类型-->
-    <select id="queryCommodityTypeByCid" parameterType="CommodityType" resultType="CommodityType">
+    <select id="queryCommodityTypeByCid" parameterType="int" resultType="CommodityType">
         SELECT * FROM `commodity_type` WHERE tid IN (
             SELECT ter FROM `commodity_type` WHERE tid IN(
                 SELECT tsan FROM `commodity_type` WHERE tid IN (

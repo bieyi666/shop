@@ -21,6 +21,9 @@
     <select id="queryAllCommodity" parameterType="Commodity" resultMap="queryAll">
         select * from commodity
         <where>
+            <if test="cId!=null and cId!='' ">
+                cId =${cId}
+            </if>
             <if test="cName!=null and cName!='' ">
                 cName like '%${cName}%'
             </if>
@@ -47,6 +50,9 @@
     <select id="queryCountCommodity" parameterType="Commodity" resultType="int">
         select count(*) from commodity
         <where>
+            <if test="cId!=null and cId!='' ">
+                cId =${cId}
+            </if>
             <if test="cName!=null and cName!='' ">
                 cName like '%${cName}%'
             </if>
