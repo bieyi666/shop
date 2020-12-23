@@ -5,58 +5,58 @@
 <mapper namespace="com.shop.dao.OrderDao">
 
 
-<!--&lt;!&ndash;    查询订单下的信息  {一对多}&ndash;&gt;-->
-<!--    <resultMap type="orderInfo" id="orderAndOrdersdetail">-->
-<!--&lt;!&ndash;        订单&ndash;&gt;-->
-<!--        <id column="orderid" property="orderid"></id>-->
-<!--        <result column="orderTime" property="orderTime"/>-->
-<!--        <result column="receiptTime" property="receiptTime"/>-->
-<!--        <result column="state1" property="state1"/>-->
-<!--        <result column="state2" property="state2"/>-->
-<!--        <result column="state3" property="state3"/>-->
-<!--&lt;!&ndash;        用户信息&ndash;&gt;-->
-<!--        <association property="userInfo" javaType="UserInfo">-->
-<!--            <id column="uId" property="uid"/>-->
-<!--            <result column="uName" property="uname"/>-->
-<!--            <result column="phone" property="phone"/>-->
-<!--            <result column="password" property="password"/>-->
-<!--            <result column="photo" property="photo"/>-->
-<!--        </association>-->
-<!--        <collection property="orderGoods" ofType="OrderGoods">-->
-<!--            <id column="id" property="id"></id>-->
-<!--            <result column="number" property="number"/>-->
-<!--            <association property="commodity" javaType="Commodity">-->
-<!--                <id column="cId" property="cId"/>-->
-<!--                <result column="cName" property="cName"/>-->
-<!--                <result column="tId" property="tId"/>-->
-<!--                <result column="price" property="price"/>-->
-<!--                <result column="picture" property="picture"/>-->
+    <!--&lt;!&ndash;    查询订单下的信息  {一对多}&ndash;&gt;-->
+    <!--    <resultMap type="orderInfo" id="orderAndOrdersdetail">-->
+    <!--&lt;!&ndash;        订单&ndash;&gt;-->
+    <!--        <id column="orderid" property="orderid"></id>-->
+    <!--        <result column="orderTime" property="orderTime"/>-->
+    <!--        <result column="receiptTime" property="receiptTime"/>-->
+    <!--        <result column="state1" property="state1"/>-->
+    <!--        <result column="state2" property="state2"/>-->
+    <!--        <result column="state3" property="state3"/>-->
+    <!--&lt;!&ndash;        用户信息&ndash;&gt;-->
+    <!--        <association property="userInfo" javaType="UserInfo">-->
+    <!--            <id column="uId" property="uid"/>-->
+    <!--            <result column="uName" property="uname"/>-->
+    <!--            <result column="phone" property="phone"/>-->
+    <!--            <result column="password" property="password"/>-->
+    <!--            <result column="photo" property="photo"/>-->
+    <!--        </association>-->
+    <!--        <collection property="orderGoods" ofType="OrderGoods">-->
+    <!--            <id column="id" property="id"></id>-->
+    <!--            <result column="number" property="number"/>-->
+    <!--            <association property="commodity" javaType="Commodity">-->
+    <!--                <id column="cId" property="cId"/>-->
+    <!--                <result column="cName" property="cName"/>-->
+    <!--                <result column="tId" property="tId"/>-->
+    <!--                <result column="price" property="price"/>-->
+    <!--                <result column="picture" property="picture"/>-->
 
-<!--                <result column="introduce" property="introduce"/>-->
-<!--                <result column="state" property="state"/>-->
+    <!--                <result column="introduce" property="introduce"/>-->
+    <!--                <result column="state" property="state"/>-->
 
-<!--                <result column="purchaseState" property="purchaseState"/>-->
-<!--                <result column="purchasePrice" property="purchasePrice"/>-->
-<!--            </association>-->
-<!--        </collection>-->
-<!--    </resultMap>-->
-<!--    <select id="userOrder" resultMap="orderAndOrdersdetail">-->
-<!--        SELECT * FROM order_info o , user_info u , order_goods od , commodity c-->
-<!--        <where>-->
-<!--            o.uid = u.uId AND o.orderid = od.orderid AND c.cId = od.goodsid-->
+    <!--                <result column="purchaseState" property="purchaseState"/>-->
+    <!--                <result column="purchasePrice" property="purchasePrice"/>-->
+    <!--            </association>-->
+    <!--        </collection>-->
+    <!--    </resultMap>-->
+    <!--    <select id="userOrder" resultMap="orderAndOrdersdetail">-->
+    <!--        SELECT * FROM order_info o , user_info u , order_goods od , commodity c-->
+    <!--        <where>-->
+    <!--            o.uid = u.uId AND o.orderid = od.orderid AND c.cId = od.goodsid-->
 
-<!--            and o.uid = 2-->
-<!--        </where>-->
-<!--    </select>-->
+    <!--            and o.uid = 2-->
+    <!--        </where>-->
+    <!--    </select>-->
 
-<!--查询用户下的订单信息-->
+    <!--查询用户下的订单信息-->
     <resultMap type="userInfo" id="userAndOrdersAndOrderDetailAndItems">
         <id column="uId" property="uid"/>
         <result column="uName" property="uName"/>
         <result column="phone" property="phone"/>
         <result column="password" property="password"/>
         <result column="photo" property="photo"/>
-<!--        订单-->
+        <!--        订单-->
         <collection property="orderInfo" ofType="OrderInfo">
             <id column="orderid" property="orderid"></id>
             <result column="uid" property="uid"></result>
@@ -66,13 +66,13 @@
             <result column="state1" property="state1"/>
             <result column="state2" property="state2"/>
             <result column="state3" property="state3"/>
-<!--            订单商品-->
+            <!--            订单商品-->
             <collection property="orderGoods" ofType="OrderGoods">
                 <id column="id" property="id"></id>
 
                 <result column="orderid" property="orderid"></result>
                 <result column="number" property="number"/>
-<!--                商品-->
+                <!--                商品-->
                 <association property="commodity" javaType="Commodity">
                     <id column="cId" property="cId"/>
                     <result column="cName" property="cName"/>
@@ -91,28 +91,57 @@
     </resultMap>
 
 
-
-
     <select id="userOrderPage" resultMap="userAndOrdersAndOrderDetailAndItems">
 
         SELECT * FROM user_info u
         INNER JOIN order_info o ON u.uId = o.uid
-        INNER JOIN  order_goods od ON od.orderid = o.orderid
+        INNER JOIN order_goods od ON od.orderid = o.orderid
         INNER JOIN commodity c ON c.cId = od.goodsid
         <where>
             u.uId = 2
         </where>
-	</select>
+    </select>
 
     <select id="userOrderPageCount" resultType="int">
 
         SELECT count(*) FROM user_info u
         INNER JOIN order_info o ON u.uId = o.uid
-        INNER JOIN  order_goods od ON od.orderid = o.orderid
+        INNER JOIN order_goods od ON od.orderid = o.orderid
         INNER JOIN commodity c ON c.cId = od.goodsid
         <where>
             u.uId = 2
         </where>
+    </select>
+
+    <!-- —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————— -->
+
+    <resultMap id="queryAll" type="OrderInfo">
+        <result property="storeid" column="storeid"></result>
+        <result property="uid" column="uid"></result>
+        <result property="orderid" column="orderid"></result>
+
+        <!--        查询商户信息-->
+        <collection property="storeInfo" ofType="storeInfo"
+                    javaType="storeInfo" select="com.shop.dao.StoreDao.queryStoreById" column="storeid">
+
+        </collection>
+        <!--        查询用户信息-->
+        <collection property="userInfo" ofType="userInfo"
+                    javaType="userInfo" select="com.shop.dao.UserDao.queryUserInfo" column="uid"></collection>
+
+        <!--        查询订单商品-->
+        <collection property="orderGoods" ofType="orderGoods"
+                    javaType="list" select="com.shop.dao.OrderGoods.queryAllOrderGoods" column="orderid"></collection>
+    </resultMap>
+
+    <!--    通过商户编号 查询商户订单-->
+    <select id="queryAllOrderInfoBySid" parameterType="list" resultMap="queryAll">
+        select * from Order_Info where storeid=#{storeid}
+    </select>
+
+    <!--    查询商户订单总条数-->
+    <select id="queryCountOrderInfoBySid" parameterType="OrderInfo" resultType="int">
+        select count(*) from Order_Info where storeid=#{storeid}
     </select>
 
 </mapper>

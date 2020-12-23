@@ -78,4 +78,10 @@
             state=1
         </where>
     </select>
+
+
+    <!--    根据编号 查询商户信息-->
+    <select id="queryStoreById" parameterType="storeInfo" resultType="storeInfo">
+        select * from store_Info where storeId=#{storeId}
+    </select>
 </mapper>

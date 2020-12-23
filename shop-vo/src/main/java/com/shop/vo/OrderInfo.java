@@ -20,5 +20,7 @@ public class OrderInfo {
     private Integer state1;
     private Integer state2;
     private Integer state3;
-    private List<OrderGoods> orderGoods;
+    private List<OrderGoods> orderGoods; //一个订单对应多个商品
+    private UserInfo userInfo; //一个订单对应一个用户
+    private StoreInfo storeInfo; //一个订单对应一个商户
 }

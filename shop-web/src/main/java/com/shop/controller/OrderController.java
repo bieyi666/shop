@@ -2,6 +2,7 @@ package com.shop.controller;
 
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.shop.service.OrderService;
 import com.shop.vo.OrderInfo;
 import com.shop.vo.PageVo;
@@ -31,6 +32,20 @@ public class OrderController {
         PageVo<OrderInfo> page1 = orderService.userOrderPage(page,rows);
         System.out.println("-------------------------------"+page1.toString());
         return orderService.userOrderPage(page, rows);
+    }
+
+
+    /**
+     * 通过商户编号 查询商户订单
+     * @param orderInfo
+     * @return
+     */
+    @RequestMapping("/queryAllOrderInfoBySid.action")
+    @ResponseBody
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo,
+                                                    @RequestParam(value = "page", defaultValue = "1") int page,
+                                                    @RequestParam(value = "rows", defaultValue = "5") int rows) {
+        return orderService.queryAllOrderInfoBySid(orderInfo,page,rows);
     }
 
 }

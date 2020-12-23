@@ -58,4 +58,11 @@ public interface StoreDao {
     public List<StoreInfo> queryAllStore(StoreInfo storeInfo);
 
     public int queryAllStoreCount(StoreInfo storeInfo);
+
+    /**
+     * 根据编号 查询商户信息
+     * @param storeId
+     * @return
+     */
+    public StoreInfo queryStoreById(int storeId);
 }

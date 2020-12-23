@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService
+{
     @Autowired
     OrderDao orderDao;
 
@@ -22,6 +23,21 @@ public class OrderServiceImpl implements OrderService{
         PageHelper.startPage(page,rows);
         pageVo.setRows(orderDao.userOrderPage());
         pageVo.setTotal(orderDao.userOrderPageCount());
+        return pageVo;
+    }
+
+
+    /**
+     * 通过商户编号 查询商户订单
+     * @param orderInfo
+     * @return
+     */
+    @Override
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo,int page,int rows) {
+        PageVo<OrderInfo> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(orderDao.queryAllOrderInfoBySid(orderInfo));
+        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(orderInfo));
         return pageVo;
     }
 }
