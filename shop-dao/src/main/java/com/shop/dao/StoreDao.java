@@ -59,10 +59,12 @@ public interface StoreDao {
 
     public int queryAllStoreCount(StoreInfo storeInfo);
 
-    /**
-     * 根据编号 查询商户信息
-     * @param storeId
-     * @return
-     */
+
+
+//    判断用户是否为商户
+    public StoreInfo pdStore(int uid);
+
+
     public StoreInfo queryStoreById(int storeId);
+
 }

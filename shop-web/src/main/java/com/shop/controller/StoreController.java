@@ -112,4 +112,10 @@ public class StoreController {
         return pageVo;
     }
 
+    @CrossOrigin
+    @RequestMapping("/pdStore.action")
+    @ResponseBody
+    public StoreInfo pdStore(int uid){
+        return storeService.pdStore(uid);
+    }
 }

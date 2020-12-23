@@ -41,7 +41,7 @@
 
     <!--    .....................前台个人中心页面..............................-->
     <!--    查询用户个人信息-->
-    <select id="queryUserInfo" resultType="userInfo">
+    <select id="queryUserInfo" resultType="userInfo" parameterType="int">
         select * from user_info where uId = #{uid}
     </select>
 
