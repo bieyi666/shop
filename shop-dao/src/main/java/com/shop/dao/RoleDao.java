@@ -64,9 +64,8 @@ public interface RoleDao {
      * 删除角色权限
      *
      * @param rid 角色id
-     * @param mid 菜单按钮id
      * @return
      */
-    public int delRolePer(@Param("rid") Integer rid, @Param("mid") Integer mid);
+    public int delRolePer(Integer rid);
 
 }

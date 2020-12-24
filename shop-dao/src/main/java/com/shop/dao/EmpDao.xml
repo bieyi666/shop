@@ -16,6 +16,11 @@
         </where>
     </select>
 
+    <select id="seEmp1" resultMap="seEmpMap">
+        select * from emp_info
+        where id = #{id}
+    </select>
+
     <resultMap id="seEmpMap" type="Emp">
         <id column="id" property="id"></id>
         <collection property="roles" javaType="ArrayList" ofType="Role"

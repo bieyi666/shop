@@ -18,6 +18,13 @@ public interface EmpDao {
     public List<Emp> seEmp(Map<String, Object> map);
 
     /**
+     * 查询员工，id
+     * @param id
+     * @return
+     */
+    public Emp seEmp1(Integer id);
+
+    /**
      * 查询员工总条数
      * @param map
      * @return

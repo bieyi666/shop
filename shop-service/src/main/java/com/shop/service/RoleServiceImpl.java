@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.alibaba.fastjson.JSON;
 import com.shop.dao.RoleDao;
 import com.shop.vo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +43,29 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public boolean inRolePer(Integer rid, Integer mid) {
-        return roleDao.inRolePer(rid, mid) > 0;
+    public boolean inRolePer(Integer rid, String midList1, String midList2) {
+        List<Integer> list = JSON.parseArray(midList1, Integer.class);
+        List<Integer> list1 = JSON.parseArray(midList2, Integer.class);
+
+        for (Integer i : list) {
+            if (roleDao.inRolePer(rid, i) < 1) {
+                // 回滚
+
+                return false;
+            }
+        }
+        for (Integer i : list1) {
+            if (roleDao.inRolePer(rid, i) < 1) {
+                // 回滚
+
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public boolean delRolePer(Integer rid, Integer mid) {
-        return roleDao.delRolePer(rid, mid) > 0;
+    public boolean delRolePer(Integer rid) {
+        return roleDao.delRolePer(rid) > 0;
     }
 }

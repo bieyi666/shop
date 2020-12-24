@@ -45,12 +45,13 @@ public class RoleController {
     }
 
     @RequestMapping(value = "inRolePer.action")
-    public boolean inRolePer(Integer rid, Integer mid) {
-        return roleService.inRolePer(rid, mid);
+    public boolean inRolePer(Integer rid, String midList1, String midList2) {
+
+        return roleService.inRolePer(rid, midList1, midList2);
     }
 
     @RequestMapping(value = "delRolePer.action")
-    public boolean delRolePer(Integer rid, Integer mid) {
-        return roleService.delRolePer(rid, mid);
+    public boolean delRolePer(Integer rid) {
+        return roleService.delRolePer(rid);
     }
 }

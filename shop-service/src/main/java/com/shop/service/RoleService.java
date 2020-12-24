@@ -52,12 +52,12 @@ public interface RoleService {
 
     /**
      * 添加角色权限
-     *
-     * @param rid 角色id
-     * @param mid 菜单按钮id
+     * @param rid
+     * @param midList1 选中id
+     * @param midList2 半选中id
      * @return
      */
-    public boolean inRolePer(Integer rid, Integer mid);
+    public boolean inRolePer(Integer rid, String midList1, String midList2);
 
     /**
      * 删除角色权限
@@ -66,5 +66,5 @@ public interface RoleService {
      * @param mid 菜单按钮id
      * @return
      */
-    public boolean delRolePer(Integer rid, Integer mid);
+    public boolean delRolePer(Integer rid);
 }

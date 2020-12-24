@@ -30,6 +30,6 @@
     </insert>
 
     <delete id="delRolePer">
-        delete from role_menu where rid = #{rid} and mid = #{mid}
+        delete from role_menu where rid = #{rid}
     </delete>
 </mapper>
