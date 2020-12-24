@@ -67,7 +67,6 @@ public class StoreController {
     @ResponseBody
     public Map storeApply(StoreInfo storeInfo, MultipartFile img){
         Map<String,String> map =new HashMap<String,String>();
-
         ImageUpload imageUpload=new ImageUpload();
         String ImgName=imageUpload.save_image(img);
         storeInfo.setPhoto(ImgName);
