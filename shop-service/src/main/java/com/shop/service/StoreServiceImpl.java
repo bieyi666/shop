@@ -63,4 +63,9 @@ public class StoreServiceImpl implements StoreService
         pageVo.setTotal(storeDao.queryAllStoreCount(storeInfo));
         return pageVo;
     }
+
+    @Override
+    public StoreInfo pdStore(int uid) {
+        return storeDao.pdStore(uid);
+    }
 }

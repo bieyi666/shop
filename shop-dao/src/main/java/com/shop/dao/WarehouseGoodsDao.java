@@ -31,7 +31,6 @@ public interface WarehouseGoodsDao {
      */
     public int queryCountWarehouseGoodsByGroup();
 
-
     /**
      * 添加仓库商品
      * @param warehouseGoods
@@ -59,4 +58,11 @@ public interface WarehouseGoodsDao {
      * @return
      */
     public List<WarehouseGoods> queryWarehouseGoodsByIds(WarehouseGoods warehouseGoods);
+
+    /**
+     * 分布查库存
+     * @param cid
+     * @return
+     */
+    public WarehouseGoods queryWarehouseGoodsByCid(int cid);
 }

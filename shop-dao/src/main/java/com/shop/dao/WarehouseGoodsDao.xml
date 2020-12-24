@@ -74,4 +74,8 @@
         </where>
 
     </select>
+
+    <select id="queryWarehouseGoodsByCid" parameterType="int" resultType="warehouseGoods">
+        SELECT cid,SUM(`stock`) AS stock FROM `warehouse_goods` WHERE cid=#{cid} GROUP BY cid
+    </select>
 </mapper>

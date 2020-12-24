@@ -84,4 +84,10 @@
     <select id="queryStoreById" parameterType="storeInfo" resultType="storeInfo">
         select * from store_Info where storeId=#{storeId}
     </select>
+
+<!--    public StoreInfo pdStore(int uid);-->
+    <select id="pdStore" parameterType="int" resultType="storeInfo">
+        SELECT * FROM `store_info` WHERE uid = #{uid}
+    </select>
+
 </mapper>

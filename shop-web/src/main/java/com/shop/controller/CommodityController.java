@@ -60,4 +60,16 @@ public class CommodityController {
     public Commodity queryCommodityById(int cid){
         return  commodityService.queryCommodityById(cid);
     }
+
+    /**
+     * 模糊查询所有商品
+     * @param commodity
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryAllCommoditysan.action")
+    @ResponseBody
+    public List<Commodity> queryAllCommoditysan(Commodity commodity){
+        return  commodityService.queryAllCommoditysan(commodity);
+    }
 }

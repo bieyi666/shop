@@ -54,4 +54,6 @@ public interface StoreService {
      */
     public PageVo<StoreInfo> queryAllStore(StoreInfo storeInfo,int page, int rows);
 
+//    判断用户是否为商户
+    public StoreInfo pdStore(int uid);
 }
