@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.shop.service.CommodityService;
 import com.shop.vo.Commodity;
 import com.shop.vo.PageVo;
+import com.shop.vo.WarehouseGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -58,7 +59,8 @@ public class CommodityController {
     @RequestMapping("/queryCommodityById.action")
     @ResponseBody
     public Commodity queryCommodityById(int cid){
-        return  commodityService.queryCommodityById(cid);
+        Commodity commodity=commodityService.queryCommodityById(cid);
+        return  commodity;
     }
 
     /**
