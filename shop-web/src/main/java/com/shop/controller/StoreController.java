@@ -44,13 +44,11 @@ public class StoreController {
      * @param storeInfo
      * @return
      */
-    @CrossOrigin //跨域
-    @RequestMapping("/updateStoreInfoBySid.action")
+    @CrossOrigin ()//跨域
+    @RequestMapping(value = "/updateStoreInfoBySid.action", produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public String updateStoreInfoBySid(StoreInfo storeInfo, MultipartFile image) {
-        ImageUpload imageUpload=new ImageUpload();
-        String img=imageUpload.save_image(image);
-        storeInfo.setPhoto(img);
+    public String updateStoreInfoBySid(StoreInfo storeInfo) {
+        System.out.println(storeInfo);
         int num=storeService.updateStoreInfoBySid(storeInfo);
         if (num>0){
             return "修改成功";
@@ -67,7 +65,6 @@ public class StoreController {
     @ResponseBody
     public Map storeApply(StoreInfo storeInfo, MultipartFile img){
         Map<String,String> map =new HashMap<String,String>();
-
         ImageUpload imageUpload=new ImageUpload();
         String ImgName=imageUpload.save_image(img);
         storeInfo.setPhoto(ImgName);
