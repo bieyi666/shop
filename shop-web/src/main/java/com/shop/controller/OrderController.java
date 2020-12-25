@@ -1,7 +1,6 @@
 package com.shop.controller;
 
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.shop.service.OrderService;
@@ -16,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin
 @Controller
@@ -29,25 +27,12 @@ public class OrderController {
     @RequestMapping("/userOrder.action")
     @ResponseBody
     public PageVo<OrderInfo> userOrderPage(Integer uid,Integer state3,
-                                           @RequestParam(value = "page", defaultValue = "1") int page,
-                                           @RequestParam(value = "rows", defaultValue = "15") int rows) {
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "rows", defaultValue = "5") int rows) {
+
+        PageVo<OrderInfo> page1 = orderService.userOrderPage(uid,state3,page, rows);
+        System.out.println("-------------------------------" + page1.toString());
         return orderService.userOrderPage(uid,state3,page, rows);
-    }
-
-    @RequestMapping("/qdOrder.action")
-    @ResponseBody
-    public Map qdOrder(Integer orderid, Integer state3) {
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        int num = orderService.qdOrder(orderid, state3);
-        if (num == 1) {
-            map.put("code", "0");
-            map.put("msg", "确认收货");
-        } else {
-            map.put("code", "1");
-            map.put("msg", "确认收货失败");
-        }
-        return map;
     }
 
 
@@ -60,9 +45,12 @@ public class OrderController {
     @RequestMapping("/queryAllOrderInfoBySid.action")
     @ResponseBody
     public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo,
+                                                    Date orderTime1,
+                                                    Date orderTime2,
                                                     @RequestParam(value = "page", defaultValue = "1") int page,
                                                     @RequestParam(value = "rows", defaultValue = "5") int rows) {
-        return orderService.queryAllOrderInfoBySid(orderInfo, page, rows);
+        System.out.println(orderInfo.getStoreid());
+        return orderService.queryAllOrderInfoBySid(orderInfo, page, rows, orderTime1, orderTime2);
     }
 
 }

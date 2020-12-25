@@ -6,6 +6,7 @@ import com.shop.vo.StoreInfo;
 import com.shop.vo.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderService {
@@ -25,7 +26,7 @@ public interface OrderService {
      * @param orderInfo
      * @return
      */
-    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows);
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2);
 
 
 }

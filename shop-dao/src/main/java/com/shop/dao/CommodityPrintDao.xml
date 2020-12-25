@@ -13,4 +13,10 @@
         </where>
     </select>
 
+
+    <!--    商品图片添加-->
+    <insert id="insertCommodityPrint" parameterType="CommodityPrint">
+        insert into Commodity_Print values(null,#{cId},#{print})
+    </insert>
+
 </mapper>

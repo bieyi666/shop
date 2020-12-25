@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,17 +34,19 @@ public class OrderServiceImpl implements OrderService
     }
 
 
+
+
     /**
      * 通过商户编号 查询商户订单
      * @param orderInfo
      * @return
      */
     @Override
-    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo,int page,int rows) {
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2) {
         PageVo<OrderInfo> pageVo=new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setRows(orderDao.queryAllOrderInfoBySid(orderInfo));
-        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(orderInfo));
+        pageVo.setRows(orderDao.queryAllOrderInfoBySid(orderInfo,orderTime1,orderTime2));
+        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(orderInfo,orderTime1,orderTime2));
         return pageVo;
     }
 }
