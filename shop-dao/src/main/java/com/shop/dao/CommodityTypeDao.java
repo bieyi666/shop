@@ -44,4 +44,10 @@ public interface CommodityTypeDao {
      */
     public List<CommodityType> queryAllci(int tsan);
 
+    /**
+     * 条件查询商品次类
+     * @param ter
+     * @return
+     */
+    public List<CommodityType>queryAllciq(int ter);
 }

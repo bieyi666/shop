@@ -72,6 +72,7 @@ public class CommodityController {
     @RequestMapping("/queryAllCommoditysan.action")
     @ResponseBody
     public List<Commodity> queryAllCommoditysan(Commodity commodity){
+        System.out.println(commodity);
         return  commodityService.queryAllCommoditysan(commodity);
     }
 }

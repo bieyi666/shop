@@ -107,6 +107,7 @@
         select * from commodity
         <where>
             <if test="cName!=null and cName!= '' ">cName like '%${cName}%' </if>
+            <if test="tId!=null and tId!= '' ">and tId like '%${tId}%' </if>
         </where>
     </select>
 </mapper>
