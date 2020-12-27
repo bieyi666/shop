@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +27,29 @@ public class OrderServiceImpl implements OrderService
         pageVo.setRows(orderDao.userOrderPage(uid,state3));
         pageVo.setTotal(orderDao.userOrderPageCount(uid,state3));
         return pageVo;
+    }
+
+    @Override
+    public PageVo<StoreInfo> HstoreOrderPage(StoreInfo storeInfo, int page, int rows) {
+        PageVo<StoreInfo> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(orderDao.HstoreOrderPage(storeInfo));
+        pageVo.setTotal(orderDao.HstoreOrderPageCount(storeInfo));
+        return pageVo;
+    }
+
+    @Override
+    public PageVo<OrderInfo> HNoStateOrderPage(OrderInfo orderInfo, int page, int rows) {
+        PageVo<OrderInfo> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(orderDao.HNoStateOrderPage(orderInfo));
+        pageVo.setTotal(orderDao.HNoStateOrderPageCount(orderInfo));
+        return pageVo;
+    }
+
+    @Override
+    public int fahuoHorder(List<String> storeids) {
+        return orderDao.fahuoHorder(storeids);
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.shop.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 //商家实体
 @Data
 public class StoreInfo {
@@ -13,4 +15,6 @@ public class StoreInfo {
     private String photo; //图片
     private int state; //状态(0:待审核1:商家2:已删除)
     private String msg; //备注信息
+
+    private List<OrderInfo> orderInfo;//一个商户对应多个订单
 }

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,7 +113,8 @@ public class StoreController {
     @CrossOrigin
     @RequestMapping("/pdStore.action")
     @ResponseBody
-    public StoreInfo pdStore(int uid){
+    public StoreInfo pdStore(int uid, HttpSession session){
+
         return storeService.pdStore(uid);
     }
 }
