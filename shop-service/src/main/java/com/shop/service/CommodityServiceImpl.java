@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.shop.dao.CommodityDao;
 import com.shop.vo.Commodity;
 import com.shop.vo.PageVo;
+import com.shop.vo.WarehouseGoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -79,6 +79,76 @@
             WHERE `orderid` = #{orderid} ;
     </update>
 
+
+<!--    商户下的订单信息-->
+    <resultMap type="storeInfo" id="storeAndOrder">
+        <id column="storeid" property="storeId"/>
+        <result column="uid" property="uId"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="photo" property="photo"/>
+        <result column="state" property="state"/>
+        <result column="msg" property="msg"/>
+        <!--        订单-->
+        <collection property="orderInfo" ofType="OrderInfo">
+            <id column="orderid" property="orderid"></id>
+            <result column="uid" property="uid"></result>
+            <result column="storeid" property="storeid"></result>
+            <result column="orderTime" property="orderTime"/>
+            <result column="receiptTime" property="receiptTime"/>
+            <result column="state1" property="state1"/>
+            <result column="state2" property="state2"/>
+            <result column="state3" property="state3"/>
+            <!--            订单商品-->
+            <collection property="orderGoods" ofType="OrderGoods">
+                <id column="id" property="id"></id>
+                <result column="orderid" property="orderid"></result>
+                <result column="number" property="number"/>
+                <!--                商品-->
+                <association property="commodity" javaType="Commodity">
+                    <id column="cId" property="cId"/>
+                    <result column="cName" property="cName"/>
+                    <result column="tId" property="tId"/>
+                    <result column="price" property="price"/>
+                    <result column="picture" property="picture"/>
+                    <result column="introduce" property="introduce"/>
+                    <result column="state" property="state"/>
+                    <result column="purchaseState" property="purchaseState"/>
+                    <result column="purchasePrice" property="purchasePrice"/>
+                </association>
+            </collection>
+        </collection>
+    </resultMap>
+<!--    public List<StoreInfo> HstoreOrderPage(StoreInfo storeInfo);-->
+    <select id="HstoreOrderPage" resultMap="storeAndOrder" parameterType="storeInfo">
+        SELECT * FROM store_info s
+            INNER JOIN order_info o ON s. storeid = o.storeid
+            INNER JOIN order_goods og ON  og.orderid = o.orderid
+            INNER JOIN commodity c ON c.cId =  og.goodsid
+    </select>
+<!--    public int HstoreOrderPageCount(StoreInfo storeInfo);-->
+    <select id="HstoreOrderPageCount" resultType="int" parameterType="storeInfo">
+-- DISTINCT s.name
+        SELECT  COUNT(DISTINCT s.name) FROM store_info s
+            INNER JOIN order_info o ON s. storeid = o.storeid
+            INNER JOIN order_goods og ON  og.orderid = o.orderid
+            INNER JOIN commodity c ON c.cId =  og.goodsid
+    </select>
+
+
+<!--发货-->
+    <update id="fahuoHorder">
+        UPDATE  `order_info`
+            SET
+              `state1` = 1
+            WHERE `storeid` in (
+                <foreach collection="list" item="id" separator=",">
+                    #{id}
+                </foreach>
+            )
+    </update>
+
     <!-- —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————— -->
 
     <resultMap id="queryAll" type="OrderInfo">
@@ -100,14 +170,53 @@
                     javaType="list" select="com.shop.dao.OrderGoods.queryAllOrderGoods" column="orderid"></collection>
     </resultMap>
 
+
+    <!--    查询总店未发货订单-->
+    <select id="HNoStateOrderPage" parameterType="list" resultMap="queryAll">
+        select * from Order_Info
+        <where>
+            storeid=#{storeid} and state1 = 0
+        </where>
+    </select>
+
+    <!--    查询总店未发货订单数-->
+    <select id="HNoStateOrderPageCount" parameterType="OrderInfo" resultType="int">
+        select count(*) from Order_Info
+        <where>
+            storeid=#{storeid} and state1 = 0
+        </where>
+    </select>
+
+
+
+
     <!--    通过商户编号 查询商户订单-->
     <select id="queryAllOrderInfoBySid" parameterType="list" resultMap="queryAll">
-        select * from Order_Info where storeid=#{storeid}
+        select * from Order_Info
+         <where>
+             storeid=#{order.storeid}
+             <if test="time1 != null">
+                 orderTime >= #{time1}
+             </if>
+             <if test="time2 != null">
+                 #{time2} >= orderTime
+             </if>
+         </where>
     </select>
 
     <!--    查询商户订单总条数-->
     <select id="queryCountOrderInfoBySid" parameterType="OrderInfo" resultType="int">
-        select count(*) from Order_Info where storeid=#{storeid}
+        select count(*) from Order_Info
+        <where>
+            storeid=#{order.storeid}
+            <if test="time1 != null">
+                orderTime >= #{time1}
+            </if>
+            <if test="time2 != null">
+                #{time2} >= orderTime
+            </if>
+
+        </where>
     </select>
 
 

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,13 +45,11 @@ public class StoreController {
      * @param storeInfo
      * @return
      */
-    @CrossOrigin //跨域
-    @RequestMapping("/updateStoreInfoBySid.action")
+    @CrossOrigin ()//跨域
+    @RequestMapping(value = "/updateStoreInfoBySid.action", produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    public String updateStoreInfoBySid(StoreInfo storeInfo, MultipartFile image) {
-        ImageUpload imageUpload=new ImageUpload();
-        String img=imageUpload.save_image(image);
-        storeInfo.setPhoto(img);
+    public String updateStoreInfoBySid(StoreInfo storeInfo) {
+        System.out.println(storeInfo);
         int num=storeService.updateStoreInfoBySid(storeInfo);
         if (num>0){
             return "修改成功";
@@ -114,7 +113,8 @@ public class StoreController {
     @CrossOrigin
     @RequestMapping("/pdStore.action")
     @ResponseBody
-    public StoreInfo pdStore(int uid){
+    public StoreInfo pdStore(int uid, HttpSession session){
+
         return storeService.pdStore(uid);
     }
 }

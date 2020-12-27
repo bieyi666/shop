@@ -33,16 +33,20 @@
             </if>
         </where>
     </select>
-
+    <!--商品主类-->
     <select id="queryAllzhu" resultType="CommodityType">
         SELECT * FROM commodity_type WHERE ter=0
     </select>
-
+    <!--商品中类-->
     <select id="queryAllzho" parameterType="int" resultType="CommodityType">
         SELECT * FROM commodity_type WHERE tsan=0 AND ter=#{ter}
     </select>
-
+    <!--商品次类-->
     <select id="queryAllci" parameterType="int" resultType="CommodityType">
         SELECT * FROM commodity_type WHERE ter=1000 AND tsan=#{tsan}
+    </select>
+    <!--条件查询展示次类-->
+    <select id="queryAllciq" parameterType="int" resultType="CommodityType">
+        SELECT * FROM commodity_type WHERE tsan IN (SELECT tId FROM commodity_type WHERE ter=#{ter})
     </select>
 </mapper>

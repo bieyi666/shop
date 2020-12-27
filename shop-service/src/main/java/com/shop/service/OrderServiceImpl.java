@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,9 +30,34 @@ public class OrderServiceImpl implements OrderService
     }
 
     @Override
+    public PageVo<StoreInfo> HstoreOrderPage(StoreInfo storeInfo, int page, int rows) {
+        PageVo<StoreInfo> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(orderDao.HstoreOrderPage(storeInfo));
+        pageVo.setTotal(orderDao.HstoreOrderPageCount(storeInfo));
+        return pageVo;
+    }
+
+    @Override
+    public PageVo<OrderInfo> HNoStateOrderPage(OrderInfo orderInfo, int page, int rows) {
+        PageVo<OrderInfo> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(orderDao.HNoStateOrderPage(orderInfo));
+        pageVo.setTotal(orderDao.HNoStateOrderPageCount(orderInfo));
+        return pageVo;
+    }
+
+    @Override
+    public int fahuoHorder(List<String> storeids) {
+        return orderDao.fahuoHorder(storeids);
+    }
+
+    @Override
     public int qdOrder(Integer orderid, Integer state3) {
         return orderDao.qdOrder(orderid,state3);
     }
+
+
 
 
     /**
@@ -39,11 +66,11 @@ public class OrderServiceImpl implements OrderService
      * @return
      */
     @Override
-    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo,int page,int rows) {
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2) {
         PageVo<OrderInfo> pageVo=new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setRows(orderDao.queryAllOrderInfoBySid(orderInfo));
-        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(orderInfo));
+        pageVo.setRows(orderDao.queryAllOrderInfoBySid(orderInfo,orderTime1,orderTime2));
+        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(orderInfo,orderTime1,orderTime2));
         return pageVo;
     }
 }
