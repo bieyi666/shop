@@ -194,10 +194,22 @@
         <where>
             storeid=#{order.storeid}
             <if test="time1 != null">
-                orderTime >= #{time1}
+                and orderTime >= #{time1}
             </if>
             <if test="time2 != null">
-                #{time2} >= orderTime
+                and #{time2} >= orderTime
+            </if>
+            <if test="state == 1">
+                and state3 = 1
+            </if>
+            <if test="state == 2">
+                and state1 = 1
+            </if>
+            <if test="state == 3">
+                and state2 = 0
+            </if>
+            <if test="state == 4">
+                and state3 = 3
             </if>
         </where>
     </select>
@@ -208,14 +220,31 @@
         <where>
             storeid=#{order.storeid}
             <if test="time1 != null">
-                orderTime >= #{time1}
+                and orderTime >= #{time1}
             </if>
             <if test="time2 != null">
-                #{time2} >= orderTime
+                and #{time2} >= orderTime
+            </if>
+            <if test="state == 1">
+                and state3 = 1
+            </if>
+            <if test="state == 2">
+                and state1 = 1
+            </if>
+            <if test="state == 3">
+                and state2 = 0
+            </if>
+            <if test="state == 4">
+                and state3 = 3
             </if>
 
         </where>
     </select>
+
+    <!--    修改商户订单状态-->
+    <update id="updateOrderInfoBySid" parameterType="OrderInfo">
+        update order_info set state2=1 where orderid=#{orderid}
+    </update>
 
 
     <insert id="inOrderInfo" useGeneratedKeys="true" keyProperty="orderid" keyColumn="orderid">

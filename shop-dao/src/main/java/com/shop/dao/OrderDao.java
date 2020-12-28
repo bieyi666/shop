@@ -40,6 +40,7 @@ public interface OrderDao {
      * @return
      */
     public List<OrderInfo> queryAllOrderInfoBySid(
+            @Param("state") int state,
             @Param("order") OrderInfo orderInfo,
             @Param("time1") Date orderTime1,
             @Param("time2") Date orderTime2);
@@ -52,9 +53,19 @@ public interface OrderDao {
      * @return
      */
     public int queryCountOrderInfoBySid(
+            @Param("state") int state,
             @Param("order") OrderInfo orderInfo,
             @Param("time1") Date orderTime1,
             @Param("time2") Date orderTime2);
+
+
+    /**
+     * 根据商户信息 修改商户订单状态
+     * @param orderInfo
+     * @return
+     */
+    public int updateOrderInfoBySid(OrderInfo orderInfo);
+
 
 
     /**

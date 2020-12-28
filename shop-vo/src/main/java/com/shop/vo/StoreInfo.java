@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class StoreInfo {
     private int storeId; //编号
-    private int uId; //用户编号
+    private Integer uId; //用户编号
     private String name; //名称
     private String phone; //联系电话
     private String address; //地址

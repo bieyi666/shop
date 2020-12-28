@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="shopMysql" uuid="92c85349-7f99-4bed-90af-26f0cb9ff5eb">
+    <data-source source="LOCAL" name="shopMysql [2]" uuid="0633f2ee-8b01-43b2-ba3d-dd6ae5ed99a7">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://rm-wz9hiilun5p31w068125010sm.mysql.rds.aliyuncs.com/shop</jdbc-url>
     </data-source>
   </component>
