@@ -35,7 +35,15 @@ public interface OrderService {
      * @param orderInfo
      * @return
      */
-    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2);
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(int state,OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2);
+
+
+    /**
+     * 根据商户信息 修改商户订单状态
+     * @param orderInfo
+     * @return
+     */
+    public int updateOrderInfoBySid(OrderInfo orderInfo);
 
 
 }

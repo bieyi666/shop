@@ -57,13 +57,15 @@ public class OrderController {
      */
     @RequestMapping("/queryAllOrderInfoBySid.action")
     @ResponseBody
-    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo,
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(
+                                                    @RequestParam(value = "state",defaultValue = "0") int state,
+                                                    OrderInfo orderInfo,
                                                     Date orderTime1,
                                                     Date orderTime2,
                                                     @RequestParam(value = "page", defaultValue = "1") int page,
                                                     @RequestParam(value = "rows", defaultValue = "5") int rows) {
         System.out.println(orderInfo.getStoreid());
-        return orderService.queryAllOrderInfoBySid(orderInfo, page, rows, orderTime1, orderTime2);
+        return orderService.queryAllOrderInfoBySid(state,orderInfo, page, rows, orderTime1, orderTime2);
     }
 
 
@@ -73,6 +75,21 @@ public class OrderController {
                                                     @RequestParam(value = "page", defaultValue = "1") int page,
                                                     @RequestParam(value = "rows", defaultValue = "10") int rows) {
         return orderService.HNoStateOrderPage(orderInfo, page, rows);
+    }
+
+    /**
+     * 根据商户信息 修改商户订单状态
+     * @param orderInfo
+     * @return
+     */
+    @RequestMapping(value = "/updateOrderInfoBySid.action",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public String updateOrderInfoBySid(OrderInfo orderInfo) {
+        int num=orderService.updateOrderInfoBySid(orderInfo);
+        if (num > 0){
+            return "修改成功";
+        }
+        return "修改失败";
     }
 
 }
