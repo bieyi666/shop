@@ -103,15 +103,15 @@
     <!--    通过商户编号 查询商户订单-->
     <select id="queryAllOrderInfoBySid" parameterType="list" resultMap="queryAll">
         select * from Order_Info
-         <where>
-             storeid=#{order.storeid}
-             <if test="time1 != null">
-                 orderTime >= #{time1}
-             </if>
-             <if test="time2 != null">
-                 #{time2} >= orderTime
-             </if>
-         </where>
+        <where>
+            storeid=#{order.storeid}
+            <if test="time1 != null">
+                and orderTime >= #{time1}
+            </if>
+            <if test="time2 != null">
+                and #{time2} >= orderTime
+            </if>
+        </where>
     </select>
 
     <!--    查询商户订单总条数-->
@@ -120,10 +120,10 @@
         <where>
             storeid=#{order.storeid}
             <if test="time1 != null">
-                orderTime >= #{time1}
+               and orderTime >= #{time1}
             </if>
             <if test="time2 != null">
-                #{time2} >= orderTime
+               and #{time2} >= orderTime
             </if>
         </where>
     </select>
