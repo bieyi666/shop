@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  配置为包名+接口名  实现 代理模式
+  接口中 每一个方法  都与  标签的id对应
+-->
+<mapper namespace="com.shop.dao.StatisticsDao">
+
+    <!--    根据商户编号 查询收入-->
+    <select id="queryStatisticsBySid" parameterType="list" resultType="Statistics">
+        SELECT MONTH(orderTime) AS MONTH,
+        SUM(((g.number * c.price) - (g.number * c.purchasePrice)) * 0.05)  AS storeRental
+        FROM order_info o
+        LEFT JOIN order_goods g
+        ON o.orderid = g.orderid
+        LEFT JOIN commodity c
+        ON g.goodsid = c.cId
+        WHERE o.storeid=#{storeid} AND o.state3=#{state3} GROUP BY MONTH(orderTime)
+    </select>
+
+</mapper>
