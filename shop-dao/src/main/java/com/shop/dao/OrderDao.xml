@@ -53,7 +53,7 @@
         INNER JOIN order_goods od ON od.orderid = o.orderid
         INNER JOIN commodity c ON c.cId = od.goodsid
         <where>
-            o.uId =  #{uid}
+            o.uId = #{uid}
             <if test="state3!=null">and o.state3 = #{state3}</if>
         </where>
     </select>
@@ -62,10 +62,10 @@
 
         SELECT COUNT(*) FROM user_info u
         INNER JOIN order_info o ON u.uId = o.uid
-        INNER JOIN  order_goods od ON od.orderid = o.orderid
+        INNER JOIN order_goods od ON od.orderid = o.orderid
         INNER JOIN commodity c ON c.cId = od.goodsid
         <where>
-            o.uId =  #{uid}
+            o.uId = #{uid}
             <if test="state3!=null">and o.state3 = #{state3}</if>
         </where>
     </select>
@@ -80,7 +80,7 @@
     </update>
 
 
-<!--    商户下的订单信息-->
+    <!--    商户下的订单信息-->
     <resultMap type="storeInfo" id="storeAndOrder">
         <id column="storeid" property="storeId"/>
         <result column="uid" property="uId"/>
@@ -120,14 +120,14 @@
             </collection>
         </collection>
     </resultMap>
-<!--    public List<StoreInfo> HstoreOrderPage(StoreInfo storeInfo);-->
+    <!--    public List<StoreInfo> HstoreOrderPage(StoreInfo storeInfo);-->
     <select id="HstoreOrderPage" resultMap="storeAndOrder" parameterType="storeInfo">
         SELECT * FROM store_info s
             INNER JOIN order_info o ON s. storeid = o.storeid
             INNER JOIN order_goods og ON  og.orderid = o.orderid
             INNER JOIN commodity c ON c.cId =  og.goodsid
     </select>
-<!--    public int HstoreOrderPageCount(StoreInfo storeInfo);-->
+    <!--    public int HstoreOrderPageCount(StoreInfo storeInfo);-->
     <select id="HstoreOrderPageCount" resultType="int" parameterType="storeInfo">
 -- DISTINCT s.name
         SELECT  COUNT(DISTINCT s.name) FROM store_info s
@@ -137,16 +137,16 @@
     </select>
 
 
-<!--发货-->
+    <!--发货-->
     <update id="fahuoHorder">
-        UPDATE  `order_info`
-            SET
-              `state1` = 1
-            WHERE `storeid` in (
-                <foreach collection="list" item="id" separator=",">
-                    #{id}
-                </foreach>
-            )
+        UPDATE `order_info`
+        SET
+        `state1` = 1
+        WHERE `storeid` in (
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
     </update>
 
     <!-- —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————— -->
@@ -188,20 +188,18 @@
     </select>
 
 
-
-
     <!--    通过商户编号 查询商户订单-->
     <select id="queryAllOrderInfoBySid" parameterType="list" resultMap="queryAll">
         select * from Order_Info
-         <where>
-             storeid=#{order.storeid}
-             <if test="time1 != null">
-                 orderTime >= #{time1}
-             </if>
-             <if test="time2 != null">
-                 #{time2} >= orderTime
-             </if>
-         </where>
+        <where>
+            storeid=#{order.storeid}
+            <if test="time1 != null">
+                orderTime >= #{time1}
+            </if>
+            <if test="time2 != null">
+                #{time2} >= orderTime
+            </if>
+        </where>
     </select>
 
     <!--    查询商户订单总条数-->
@@ -218,6 +216,23 @@
 
         </where>
     </select>
+
+
+    <insert id="inOrderInfo" useGeneratedKeys="true" keyProperty="orderid" keyColumn="orderid">
+        insert into order_info(uid, storeid, orderTime, receiptTime, state1, state2, state3)
+        values (#{uid}, 1, CURRENT_TIMESTAMP, null, 0, 0, 1);
+    </insert>
+
+    <insert id="inOrderGoods">
+        insert into order_goods(orderid, goodsid, number) values
+        <foreach collection="list" item="value" separator=",">
+            (#{value.orderid},#{value.goodsid},#{value.number})
+        </foreach>
+    </insert>
+
+    <update id="upOrderInfo">
+        update order_info set state3 = 2 where orderid = #{orderId}
+    </update>
 
 
 </mapper>

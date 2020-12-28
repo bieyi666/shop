@@ -32,13 +32,14 @@ public class ShoppingCatServiceImpl implements ShoppingCatService {
             Map<String, Object> map = new HashMap<>(9);
             map.put("id", list.get(i).getId());
             map.put("name", list.get(i).getCommodity().getCName());
-            map.put("inventory", 100);
+            map.put("inventory", list.get(i).getInventory());
             map.put("number", list.get(i).getNumber());
             map.put("price", list.get(i).getCommodity().getPrice());
             map.put("img", list.get(i).getCommodity().getPicture());
             map.put("type", list.get(i).getCommodityTypes().get(0) + "-" + list.get(i).getCommodityTypes().get(1));
             map.put("subtotal", list.get(i).getCommodity().getPrice() * list.get(i).getNumber());
             map.put("checked", false);
+            map.put("sid", list.get(i).getCommodity().getCId());
             list1.add(map);
             if (i == list.size() - 1) {
                 list2.add(list1);
@@ -86,5 +87,24 @@ public class ShoppingCatServiceImpl implements ShoppingCatService {
     @Override
     public boolean delShoppingCatBat(List<Integer> list) {
         return shoppingCatDao.delShoppingCatBat(list) > 0;
+    }
+
+    @Override
+    public boolean inShoppingCat(Integer uid, Integer tid, Integer sid, Integer number, Integer inventory) {
+        Map<String, Object> map = new HashMap<>(5);
+        map.put("uid", uid);
+        map.put("tid", tid);
+        map.put("sid", sid);
+        map.put("number", number);
+        map.put("inventory", inventory);
+        return shoppingCatDao.inShoppingCat(map) > 0;
+    }
+
+    @Override
+    public boolean upShoppingCatGoodsNum(Integer uid, Integer sid) {
+        Map<String, Object> map = new HashMap<>(2);
+        map.put("uid", uid);
+        map.put("sid", sid);
+        return shoppingCatDao.upShoppingCatGoodsNum(map) > 0;
     }
 }

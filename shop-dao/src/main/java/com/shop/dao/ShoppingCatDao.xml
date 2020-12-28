@@ -6,7 +6,7 @@
 
     <select id="seShoppingCat" resultMap="seShoppingCatMap">
         select * from shoppingcart
-        where uid = 1
+        where uid = #{uid}
         ORDER BY tid
     </select>
 
@@ -39,4 +39,13 @@
             #{item}
         </foreach>
     </delete>
+
+    <insert id="inShoppingCat">
+        insert into shoppingcart(uid, tid, sid, number, inventory)
+        values (#{uid}, #{tid}, #{sid}, #{number}, #{inventory})
+    </insert>
+
+    <update id="upShoppingCatGoodsNum">
+        update shoppingcart set number = number + 1 where uid = #{uid} and sid = #{sid};
+    </update>
 </mapper>

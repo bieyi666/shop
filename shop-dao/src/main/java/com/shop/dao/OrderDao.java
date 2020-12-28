@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface OrderDao {
 //    public List<OrderInfo> userOrder();
@@ -55,4 +56,25 @@ public interface OrderDao {
             @Param("time1") Date orderTime1,
             @Param("time2") Date orderTime2);
 
+
+    /**
+     * 添加订单
+     * @param orderInfo
+     * @return
+     */
+    public int inOrderInfo(OrderInfo orderInfo);
+
+    /**
+     * 添加订单的商品
+     * @param list
+     * @return
+     */
+    public int inOrderGoods(List<Map> list);
+
+    /**
+     * 支付成功改状态
+     * @param orderId
+     * @return
+     */
+    public int upOrderInfo(Integer orderId);
 }

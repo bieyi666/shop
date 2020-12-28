@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
 //    public List<OrderInfo> userOrder();
@@ -38,4 +39,18 @@ public interface OrderService {
     public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2);
 
 
+    /**
+     * 添加订单
+     * @param uid
+     * @param list
+     * @return
+     */
+    public int inOrderInfo(Integer uid, List<Map> list);
+
+    /**
+     * 支付成功
+     * @param orderId
+     * @return
+     */
+    public Boolean upOrderInfo(Integer orderId);
 }

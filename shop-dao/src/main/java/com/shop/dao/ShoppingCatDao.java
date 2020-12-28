@@ -4,6 +4,7 @@ import com.shop.vo.ShoppingCat;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author "can"
@@ -30,4 +31,19 @@ public interface ShoppingCatDao {
      * @return
      */
     public int delShoppingCatBat(List<Integer> list);
+
+    /**
+     * 加入购物车
+     * @param map
+     * @return
+     */
+    public int inShoppingCat(Map<String, Object> map);
+
+    /**
+     * 修改购物车商品数量
+     * @param map
+     * @return
+     */
+    public int upShoppingCatGoodsNum(Map<String, Object> map);
+
 }

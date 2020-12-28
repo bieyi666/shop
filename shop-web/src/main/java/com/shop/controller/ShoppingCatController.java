@@ -2,7 +2,6 @@ package com.shop.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.shop.service.ShoppingCatService;
-import com.shop.vo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,4 +35,16 @@ public class ShoppingCatController {
         List<Integer> list = JSON.parseArray(str, Integer.class);
         return shoppingCatService.delShoppingCatBat(list);
     }
+
+    @RequestMapping(value = "inShoppingCat.action")
+    public boolean inShoppingCat(Integer uid, Integer tid, Integer sid, Integer inventory) {
+        return shoppingCatService.inShoppingCat(uid, tid, sid, 1, inventory);
+    }
+
+    @RequestMapping(value = "upShoppingCatGoodsNum.action")
+    public boolean upShoppingCatGoodsNum(Integer uid, Integer sid) {
+        return shoppingCatService.upShoppingCatGoodsNum(uid, sid);
+    }
+
+
 }

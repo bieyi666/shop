@@ -1,13 +1,11 @@
 package com.shop.controller;
 
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import com.alibaba.fastjson.JSON;
 import com.shop.service.OrderService;
 import com.shop.vo.OrderInfo;
 import com.shop.vo.PageVo;
 import com.shop.vo.StoreInfo;
-import com.shop.vo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin
 @Controller
@@ -44,7 +39,7 @@ public class OrderController {
 
     @RequestMapping("/fahuoGiveStore.action")
     @ResponseBody
-    public int fahuoGiveStore(String[] storeids){
+    public int fahuoGiveStore(String[] storeids) {
         List<String> list = new ArrayList<>(Arrays.asList(storeids));
         return orderService.fahuoHorder(list);
     }
@@ -70,9 +65,22 @@ public class OrderController {
     @RequestMapping("/HNoStateOrderPage.action")
     @ResponseBody
     public PageVo<OrderInfo> HNoStateOrderPage(OrderInfo orderInfo,
-                                                    @RequestParam(value = "page", defaultValue = "1") int page,
-                                                    @RequestParam(value = "rows", defaultValue = "10") int rows) {
+                                               @RequestParam(value = "page", defaultValue = "1") int page,
+                                               @RequestParam(value = "rows", defaultValue = "10") int rows) {
         return orderService.HNoStateOrderPage(orderInfo, page, rows);
     }
 
+//    @RequestMapping(value = "inOrderInfo.action")
+//    @ResponseBody
+//    public int inOrderInfo(Integer uid, String str) {
+//        List<Map> list = (List<Map>) JSON.parse(str);
+//        return orderService.inOrderInfo(uid, list);
+//    }
+
+    @RequestMapping(value = "inOrderInfo1.action")
+    @ResponseBody
+    public int inOrderInfo1(Integer uid, String str) {
+        System.out.println(str);
+        return 0;
+    }
 }

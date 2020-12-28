@@ -22,4 +22,5 @@ public class ShoppingCat {
     private List<String> commodityTypes;
     private Integer tid;
     private Integer number;
+    private Integer inventory;
 }

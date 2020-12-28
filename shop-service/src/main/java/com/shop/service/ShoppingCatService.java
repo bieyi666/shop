@@ -30,4 +30,23 @@ public interface ShoppingCatService {
      * @return
      */
     public boolean delShoppingCatBat(List<Integer> list);
+
+    /**
+     * 添加购物车
+     * @param uid
+     * @param tid
+     * @param sid
+     * @param number
+     * @param inventory
+     * @return
+     */
+    public boolean inShoppingCat(Integer uid, Integer tid, Integer sid, Integer number, Integer inventory);
+
+    /**
+     * 修改购物车商品数量
+     * @param uid
+     * @param sid
+     * @return
+     */
+    public boolean upShoppingCatGoodsNum(Integer uid, Integer sid);
 }
