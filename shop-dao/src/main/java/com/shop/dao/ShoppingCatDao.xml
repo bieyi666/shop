@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.ShoppingCatDao">
+
+    <select id="seShoppingCat" resultMap="seShoppingCatMap">
+        select * from shoppingcart
+        where uid = 1
+        ORDER BY tid
+    </select>
+
+    <resultMap id="seShoppingCatMap" type="ShoppingCat">
+        <id property="tid" column="tid"></id>
+        <collection property="commodity" javaType="Commodity"
+                    column="sid" select="seGoods"/>
+        <collection property="commodityTypes" javaType="ArrayList" ofType="String"
+                    column="tid" select="seGoodsType"/>
+    </resultMap>
+
+    <select id="seGoods" resultType="Commodity">
+        select * from commodity where cid=#{sid}
+    </select>
+
+    <select id="seGoodsType" resultType="String">
+        select tName from commodity_type where tId = #{tid} or tId = (
+            select tsan from commodity_type where tId = #{tid}
+        )
+    </select>
+
+    <delete id="delShoppingCat">
+        delete from shoppingcart where id = #{id};
+    </delete>
+
+    <delete id="delShoppingCatBat">
+        delete from shoppingcart where id in
+        <foreach item="item" collection="list" separator=","
+                 open="(" close=")" index="">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

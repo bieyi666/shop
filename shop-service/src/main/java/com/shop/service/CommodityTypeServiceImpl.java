@@ -47,4 +47,14 @@ public class CommodityTypeServiceImpl implements CommodityTypeService
     public List<CommodityType> queryAllci(int tsan) {
         return commodityTypeDao.queryAllci(tsan);
     }
+
+    /**
+     * 条件查询商品次类
+     * @param ter
+     * @return
+     */
+    @Override
+    public List<CommodityType> queryAllciq(int ter) {
+        return commodityTypeDao.queryAllciq(ter);
+    }
 }

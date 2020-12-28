@@ -6,6 +6,7 @@ import com.shop.vo.StoreInfo;
 import com.shop.vo.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +16,16 @@ public interface OrderService {
     public PageVo<OrderInfo> userOrderPage(Integer uid,Integer state3,int page, int rows);
 
 
+    public PageVo<StoreInfo> HstoreOrderPage(StoreInfo storeInfo,int page, int rows);
+
+    public PageVo<OrderInfo> HNoStateOrderPage(OrderInfo orderInfo,int page, int rows);
+
+//    总店发货到商户
+    public int fahuoHorder(List<String> storeids);
+
     //确认收货
     public int qdOrder(Integer orderid, Integer state3);
+
 
 
 
