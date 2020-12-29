@@ -17,4 +17,17 @@ public interface StatisticsDao {
      */
     public List<Statistics> queryStatisticsBySid(@Param("storeid") int storeid, @Param("state3") int state3);
 
+
+
+
+
+
+
+
+
+//    后台报表
+//    查询年份的销售额
+    public List<Statistics> HouQueryStatisticsYear(@Param("year") String year,@Param("storeid") Integer storeid);
+
+
 }

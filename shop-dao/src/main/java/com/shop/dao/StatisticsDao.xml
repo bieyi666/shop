@@ -19,4 +19,22 @@
         WHERE o.storeid=#{storeid} AND o.state3=#{state3} GROUP BY MONTH(orderTime)
     </select>
 
+
+    <select id="HouQueryStatisticsYear" resultType="Statistics">
+        SELECT MONTH(o.orderTime) AS month , SUM(og.`number`*c.`price`) AS sale,
+            SUM(og.`number`*(c.`price`-c.`purchasePrice`)) AS rental,
+            SUM(og.`number`*((c.`price`-c.`purchasePrice`)*0.05)) AS storeRental,
+            SUM(og.`number`*(c.`price`-c.`purchasePrice`-((c.`price`-c.`purchasePrice`)*0.05))) AS netRental
+            FROM order_info o
+            LEFT JOIN order_goods og ON o.`orderid` = og.`orderid`
+            LEFT JOIN commodity c ON c.`cId` = og.`goodsid`
+            LEFT JOIN store_info s ON s.storeid = o.`storeid`
+            <where>
+                YEAR(o.orderTime) = #{year} and o.`state3` = 3
+                <if test="storeid!=null">and s.storeid=#{storeid}</if>
+            </where>
+            GROUP BY MONTH (o.orderTime)
+            ORDER BY MONTH (o.orderTime) ASC
+    </select>
+
 </mapper>

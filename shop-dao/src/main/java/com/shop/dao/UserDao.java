@@ -1,6 +1,8 @@
 package com.shop.dao;
 
 import com.shop.vo.UserInfo;
+import com.shop.vo.userAddressVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -49,6 +51,19 @@ public interface UserDao {
      * @return
      */
     public int editUserInfo(UserInfo userInfo);
+
+
+//    查询用户地址信息
+    public List<userAddressVo> userAddress(Integer uid);
+
+//    修改默认地址
+    public int editUserAddress(@Param("shstoreid") Integer shstoreid, @Param("uid") Integer uid);
+
+//    新增收货地址
+    public int addUserAddress(@Param("uid") Integer uid,@Param("shstoreid") Integer shstoreid, @Param("tag") String tag);
+
+    //删除收货地址
+    public int delUserAddress(Integer aid);
 
 //--------------------------------------------------------------------
 }

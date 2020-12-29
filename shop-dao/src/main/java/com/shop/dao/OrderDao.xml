@@ -11,6 +11,7 @@
         <result column="phone" property="phone"/>
         <result column="password" property="password"/>
         <result column="photo" property="photo"/>
+        <result column="shstoreid" property="shstoreid"/>
         <!--        订单-->
         <collection property="orderInfo" ofType="OrderInfo">
             <id column="orderid" property="orderid"></id>

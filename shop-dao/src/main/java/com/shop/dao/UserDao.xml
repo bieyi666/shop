@@ -54,5 +54,36 @@
               `photo` = #{photo}
             WHERE `uId` = #{uid} ;
     </update>
+
+    <select id="userAddress" resultType="userAddressVo">
+        SELECT ua.aid,u.uId,s.storeid,s.name,s.address,s.phone,ua.tag FROM user_info u
+            INNER JOIN user_address ua ON ua.uid = u.uId
+            INNER JOIN store_info s ON s.storeid = ua.storeid
+
+            WHERE u.uId = #{uid}
+    </select>
+
+<!--修改默认地址-->
+    <update id="editUserAddress">
+        UPDATE
+              `user_info`
+            SET
+              `shstoreid` = #{shstoreid}
+            WHERE `uId` = #{uid} ;
+    </update>
+
+<!--    新增收货地址-->
+    <insert id="addUserAddress">
+        INSERT INTO `user_address` (`uid`, `storeid`, `tag`)
+            VALUES
+              (#{uid}, #{shstoreid}, #{tag}) ;
+    </insert>
+
+    <delete id="delUserAddress">
+        DELETE
+            FROM
+              `user_address`
+            WHERE `aid` = #{aid}
+    </delete>
     <!--    .................................................................-->
 </mapper>

@@ -15,6 +15,7 @@ public class UserInfo {
     private String phone; //号码
     private String password; //密码
     private String photo; //图片
+    private Integer shstoreid; //默认收货地址
 
     private List<OrderInfo> orderInfo;//一个用户对应多个订单
 }

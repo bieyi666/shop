@@ -25,7 +25,7 @@ public class OrderController {
     @ResponseBody
     public PageVo<OrderInfo> userOrderPage(Integer uid, Integer state3,
                                            @RequestParam(value = "page", defaultValue = "1") int page,
-                                           @RequestParam(value = "rows", defaultValue = "1000") int rows) {
+                                           @RequestParam(value = "rows", defaultValue = "15") int rows) {
         return orderService.userOrderPage(uid, state3, page, rows);
     }
 
@@ -33,7 +33,7 @@ public class OrderController {
     @ResponseBody
     public PageVo<StoreInfo> HStoreOrderPage(StoreInfo storeInfo,
                                              @RequestParam(value = "page", defaultValue = "1") int page,
-                                             @RequestParam(value = "rows", defaultValue = "1000") int rows) {
+                                             @RequestParam(value = "rows", defaultValue = "15") int rows) {
         return orderService.HstoreOrderPage(storeInfo, page, rows);
     }
 
@@ -99,4 +99,18 @@ public class OrderController {
         return "修改失败";
     }
 
+
+//    qdOrder
+    @RequestMapping(value = "qdOrder.action")
+    @ResponseBody
+    public int qdOrder(Integer orderid,Integer state3){
+        return orderService.qdOrder(orderid,state3);
+    }
+
+//    删除订单
+    @RequestMapping(value = "delOrder.action")
+    @ResponseBody
+    public int delOrder(Integer orderId){
+        return 1;
+    }
 }

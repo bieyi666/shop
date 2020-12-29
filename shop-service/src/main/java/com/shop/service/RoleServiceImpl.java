@@ -46,12 +46,16 @@ public class RoleServiceImpl implements RoleService {
     public boolean inRolePer(Integer rid, String midList1, String midList2) {
         List<Integer> list = JSON.parseArray(midList1, Integer.class);
         List<Integer> list1 = JSON.parseArray(midList2, Integer.class);
-
+        roleDao.delRolePer(rid);
         if (list.size() >= 1) {
-            roleDao.inRolePer(rid, list);
+            if (roleDao.inRolePer(rid, list) < 1) {
+                return false;
+            }
         }
         if (list1.size() >= 1) {
-            roleDao.inRolePer(rid, list1);
+            if (roleDao.inRolePer(rid, list1) < 1) {
+                return false;
+            }
         }
         return true;
     }
