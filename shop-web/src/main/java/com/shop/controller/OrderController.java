@@ -79,11 +79,10 @@ public class OrderController {
         return orderService.inOrderInfo(uid, list);
     }
 
-    @RequestMapping(value = "inOrderInfo1.action")
+    @RequestMapping(value = "upOrderInfo.action")
     @ResponseBody
-    public int inOrderInfo1(Integer uid, String str) {
-        System.out.println(str);
-        return 0;
+    public Boolean upOrderInfo(Integer orderId) {
+        return orderService.upOrderInfo(orderId);
     }
     /**
      * 根据商户信息 修改商户订单状态
