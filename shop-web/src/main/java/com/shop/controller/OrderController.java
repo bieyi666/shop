@@ -106,4 +106,11 @@ public class OrderController {
     public int qdOrder(Integer orderid,Integer state3){
         return orderService.qdOrder(orderid,state3);
     }
+
+//    删除订单
+    @RequestMapping(value = "delOrder.action")
+    @ResponseBody
+    public int delOrder(Integer orderId){
+        return 1;
+    }
 }
