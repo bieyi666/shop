@@ -12,6 +12,12 @@ public interface CommodityPrintDao {
      * @return
      */
     public List<CommodityPrint> queryAllCommodityPrint(CommodityPrint commodityPrint);
+    /**
+     * 根据条件查询所以图片数量
+     * @param commodityPrint
+     * @return
+     */
+    public int queryCountCommodityPrint(CommodityPrint commodityPrint);
 
     /**
      *

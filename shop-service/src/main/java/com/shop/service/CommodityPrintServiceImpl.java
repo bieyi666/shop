@@ -27,6 +27,16 @@ public class CommodityPrintServiceImpl implements CommodityPrintService
         return commodityPrintDao.insertCommodityPrint(commodityPrint);
     }
     /**
+     * 根据条件查询所以图片数量
+     * @param commodityPrint
+     * @return
+     */
+    @Override
+    public int queryCountCommodityPrint(CommodityPrint commodityPrint) {
+        return commodityPrintDao.queryCountCommodityPrint(commodityPrint);
+    }
+
+    /**
      * 根据条件查询所以图片
      * @param commodityPrint
      * @return
