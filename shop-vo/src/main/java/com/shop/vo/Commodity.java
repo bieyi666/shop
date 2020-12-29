@@ -2,6 +2,8 @@ package com.shop.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 //商品实体
 @Data
 public class Commodity {
@@ -14,6 +16,7 @@ public class Commodity {
     private int state; //状态 0：下架 1：上架
     private CommodityType commodityType; //一个商品对应一个类型
     private WarehouseGoods warehouseGoods;//一个商品对应一个仓库库存
+    private List<CommodityPrint> commodityPrintList;//一个商品对应3个图片
 
     //    下面为供货商 ——————————————————————————————————————————————————————————————
     private int purchaseState; //状态 1：商品存在

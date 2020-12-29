@@ -49,4 +49,14 @@
     <select id="queryAllciq" parameterType="int" resultType="CommodityType">
         SELECT * FROM commodity_type WHERE tsan IN (SELECT tId FROM commodity_type WHERE ter=#{ter})
     </select>
+    <!--修改里查询次商品类型-->
+    <select id="queryAllxiuci" parameterType="int" resultType="CommodityType">
+        SELECT* FROM `commodity_type` WHERE tsan IN (SELECT tsan FROM `commodity_type` WHERE tId=#{tid})
+    </select>
+    <!--修改里查询次商品中类型-->
+    <select id="queryAllxiuzho" parameterType="int" resultType="CommodityType">
+        SELECT* FROM `commodity_type` WHERE ter IN
+        (SELECT ter FROM `commodity_type` WHERE tid IN
+        (SELECT tsan FROM `commodity_type` WHERE tId=#{tid}))
+    </select>
 </mapper>

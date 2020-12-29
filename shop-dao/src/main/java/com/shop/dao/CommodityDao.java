@@ -45,7 +45,12 @@ public interface CommodityDao {
      */
     public Commodity queryCommodityById(int cid);
 
-
+    /**
+     * 添加商品
+     * @param commodity
+     * @return
+     */
+    public int insertCommodity(Commodity commodity);
     /**
      * 查询所以商品以及库存
      * @param commodity

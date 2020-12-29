@@ -11,7 +11,6 @@
         <collection property="commodityType" ofType="commodityType"
                     javaType="commodityType" select="com.shop.dao.CommodityTypeDao.queryCommodityTypeByCid"
                     column="cid"></collection>
-
         <collection property="warehouseGoods" ofType="warehouseGoods"
                     javaType="warehouseGoods" select="com.shop.dao.WarehouseGoodsDao.queryWarehouseGoodsByCid"
                     column="cid">
@@ -21,11 +20,12 @@
     <select id="queryAllCommodity" parameterType="Commodity" resultMap="queryAll">
         select * from commodity
         <where>
+            state=1
             <if test="cId!=null and cId!='' ">
-                cId =${cId}
+                and cId =${cId}
             </if>
             <if test="cName!=null and cName!='' ">
-                cName like '%${cName}%'
+                and cName like '%${cName}%'
             </if>
             <if test="tId!=null and tId!='' ">
                 and
@@ -51,10 +51,10 @@
         select count(*) from commodity
         <where>
             <if test="cId!=null and cId!='' ">
-                cId =${cId}
+                and cId =${cId}
             </if>
             <if test="cName!=null and cName!='' ">
-                cName like '%${cName}%'
+                and cName like '%${cName}%'
             </if>
             <if test="tId!=null and tId!='' ">
                 and tId IN (
@@ -81,15 +81,15 @@
 
     <!--删除商品   （逻辑删除）-->
     <update id="delCommodityById" parameterType="int">
-        UPDATE commodity SET state=0  WHERE cId=#{id}
+        DELETE  FROM commodity WHERE  cId=#{id}
     </update>
     <!--修改商品信息-->
-    <update id="updateCommodityById" parameterType="Commodity">
+    <update id="updateCommodityByPid" parameterType="Commodity">
         UPDATE commodity SET cName=#{cName},tId=#{tId},price=#{price},picture=#{picture},introduce=#{introduce}  WHERE cId=#{cId}
     </update>
     <!--添加商品信息-->
     <insert id="insertCommodity" parameterType="Commodity">
-        INSERT INTO commodity(cName,tId,price,picture,introduce)values(#{cName},#{tId},#{price},#{picture},#{introduce})
+        INSERT INTO commodity(cName,tId,price,picture,introduce,state)values(#{cName},#{tId},#{price},#{picture},#{introduce},1)
     </insert>
 
     <!--    根据编号 查询商品信息-->
@@ -101,13 +101,16 @@
         select * from commodity
         <where>
             <if test="price !=null and price != '' ">price=#{price}</if>
+            state=1
         </where>
     </select>
     <select id="queryAllCommoditysan" parameterType="Commodity" resultType="Commodity">
         select * from commodity
         <where>
-            <if test="cName!=null and cName!= '' ">cName like '%${cName}%' </if>
+            state=1
+            <if test="cName!=null and cName!= '' "> and cName like '%${cName}%' </if>
             <if test="tId!=null and tId!= '' ">and tId like '%${tId}%' </if>
+
         </where>
     </select>
 </mapper>

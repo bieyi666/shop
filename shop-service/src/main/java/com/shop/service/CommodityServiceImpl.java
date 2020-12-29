@@ -46,11 +46,23 @@ public class CommodityServiceImpl implements CommodityService
     public List<Commodity> queryAllCommodityer(Commodity commodity) {
         return commodityDao.queryAllCommodityer(commodity);
     }
+
+    @Override
+    public int insertCommodity(Commodity commodity) {
+        return commodityDao.insertCommodity(commodity);
+    }
+
     //根据id查询单条
     @Override
     public Commodity queryCommodityById(int cid) {
         return commodityDao.queryCommodityById(cid);
     }
+    //逻辑删除商品
+    @Override
+    public int delCommodityById(int id) {
+        return commodityDao.delCommodityById(id);
+    }
+
     //模糊查询商品
     @Override
     public List<Commodity> queryAllCommoditysan(Commodity commodity) {

@@ -10,10 +10,10 @@ public interface CommodityTypeDao {
 
     /**
      * 根据商品编号 查询商品类型
-     * @param cid
+     * @param cId
      * @return
      */
-    public CommodityType queryCommodityTypeByCid(int cid);
+    public CommodityType queryCommodityTypeByCid(int cId);
 
 
 
@@ -50,4 +50,17 @@ public interface CommodityTypeDao {
      * @return
      */
     public List<CommodityType>queryAllciq(int ter);
+
+    /**
+     * 查询所有指定商品id的次类型
+     * @param tid
+     * @return
+     */
+    public List<CommodityType>queryAllxiuzho(int tid);
+    /**
+     * 查询所有指定商品id的中类型
+     * @param tid
+     * @return
+     */
+    public List<CommodityType>queryAllxiuci(int tid);
 }

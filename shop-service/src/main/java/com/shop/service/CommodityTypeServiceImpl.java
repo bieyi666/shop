@@ -57,4 +57,22 @@ public class CommodityTypeServiceImpl implements CommodityTypeService
     public List<CommodityType> queryAllciq(int ter) {
         return commodityTypeDao.queryAllciq(ter);
     }
+    /**
+     * 查询所有指定商品id的次类型
+     * @param tid
+     * @return
+     */
+    @Override
+    public List<CommodityType> queryAllxiuzho(int tid) {
+        return commodityTypeDao.queryAllxiuzho(tid);
+    }
+    /**
+     * 查询所有指定商品id的中类型
+     * @param tid
+     * @return
+     */
+    @Override
+    public List<CommodityType> queryAllxiuci(int tid) {
+        return commodityTypeDao.queryAllxiuci(tid);
+    }
 }

@@ -38,13 +38,15 @@ public class CommodityController {
 
     /**
      * 根据商品编号 修改商品信息
+     *
      * @param commodity
      * @return
      */
     @CrossOrigin
-    @RequestMapping(value = "/updateCommodityByPid.action",produces = {"application/json;charset=utf-8"})
+    @RequestMapping("/updateCommodityByPid.action")
     @ResponseBody
     public int updateCommodityByPid(Commodity commodity) {
+        System.out.println(commodity);
         return commodityService.updateCommodityByPid(commodity);
     }
 
@@ -52,27 +54,57 @@ public class CommodityController {
 
     /**
      * 根据条件查询单条
+     *
      * @param cid
      * @return
      */
     @CrossOrigin
     @RequestMapping("/queryCommodityById.action")
     @ResponseBody
-    public Commodity queryCommodityById(int cid){
-        Commodity commodity=commodityService.queryCommodityById(cid);
-        return  commodity;
+    public Commodity queryCommodityById(int cid) {
+        Commodity commodity = commodityService.queryCommodityById(cid);
+        return commodity;
     }
 
     /**
      * 模糊查询所有商品
+     *
      * @param commodity
      * @return
      */
     @CrossOrigin
     @RequestMapping("/queryAllCommoditysan.action")
     @ResponseBody
-    public List<Commodity> queryAllCommoditysan(Commodity commodity){
+    public List<Commodity> queryAllCommoditysan(Commodity commodity) {
         System.out.println(commodity);
-        return  commodityService.queryAllCommoditysan(commodity);
+        return commodityService.queryAllCommoditysan(commodity);
+    }
+
+    /**
+     * 添加商品
+     *
+     * @param commodity
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/insertCommodity.action")
+    @ResponseBody
+    public int insertCommodity(Commodity commodity) {
+        System.out.println(commodity);
+        return commodityService.insertCommodity(commodity);
+    }
+
+    /**
+     * 逻辑删除商品
+     *
+     * @param cid
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/delCommodityById.action")
+    @ResponseBody
+    public int delCommodityById(int cid) {
+        System.out.println(cid);
+        return commodityService.delCommodityById(cid);
     }
 }

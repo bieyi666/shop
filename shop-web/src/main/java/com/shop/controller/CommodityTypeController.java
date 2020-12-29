@@ -71,4 +71,24 @@ public class CommodityTypeController {
         System.out.println("次展示的"+ter);
         return commodityTypeService.queryAllciq(ter);
     }
+    /**
+     * 修改条件查询商品次类
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryAllxiuci.action")
+    @ResponseBody
+    public List<CommodityType> queryAllxiuci(int tid) {
+        return commodityTypeService.queryAllxiuci(tid);
+    }
+    /**
+     * 修改条件查询商品中类
+     * @return
+     */
+    @CrossOrigin
+    @RequestMapping("/queryAllxiuzho.action")
+    @ResponseBody
+    public List<CommodityType> queryAllxiuzho(int tid) {
+        return commodityTypeService.queryAllxiuzho(tid);
+    }
 }

@@ -30,7 +30,12 @@ public interface CommodityService {
      * @return
      */
     public List<Commodity>  queryAllCommodityer(Commodity commodity);
-
+    /**
+     * 添加商品
+     * @param commodity
+     * @return
+     */
+    public int insertCommodity(Commodity commodity);
     /**
      * 根据编号 查询商品
      * @param cid
@@ -43,4 +48,11 @@ public interface CommodityService {
      * @return
      */
     public List<Commodity> queryAllCommoditysan(Commodity commodity);
+    /**
+     *修改属性状态调整上下架
+     * @param id 商品编号
+     * @return
+     */
+    public int delCommodityById(int id);
+
 }
