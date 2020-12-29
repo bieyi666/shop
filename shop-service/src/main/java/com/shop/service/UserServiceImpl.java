@@ -4,8 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.shop.dao.UserDao;
 import com.shop.vo.PageVo;
 import com.shop.vo.UserInfo;
+import com.shop.vo.userAddressVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 //用户
 @Service
@@ -65,5 +68,25 @@ public class UserServiceImpl implements UserService
     public int editUserInfo(UserInfo userInfo) {
         int num = userDao.editUserInfo(userInfo);
         return num;
+    }
+
+    @Override
+    public List<userAddressVo> userAddress(Integer uid) {
+        return userDao.userAddress(uid);
+    }
+
+    @Override
+    public int editUserAddress(Integer shstoreid, Integer uid) {
+        return userDao.editUserAddress(shstoreid,uid);
+    }
+
+    @Override
+    public int addUserAddress(Integer uid, Integer shstoreid, String tag) {
+        return userDao.addUserAddress(uid,shstoreid,tag);
+    }
+
+    @Override
+    public int delUserAddress(Integer aid) {
+        return userDao.delUserAddress(aid);
     }
 }

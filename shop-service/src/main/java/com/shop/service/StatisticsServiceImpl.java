@@ -27,4 +27,9 @@ public class StatisticsServiceImpl implements StatisticsService
     public List<Statistics> queryStatisticsBySid(int storeid, int state3) {
         return statisticsDao.queryStatisticsBySid(storeid,state3);
     }
+
+    @Override
+    public List<Statistics> HouQueryStatisticsYear(String year, Integer storeid) {
+        return statisticsDao.HouQueryStatisticsYear(year,storeid);
+    }
 }

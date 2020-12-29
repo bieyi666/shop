@@ -4,6 +4,8 @@ import com.shop.service.UserService;
 import com.shop.utils.ImageUpload;
 import com.shop.vo.PageVo;
 import com.shop.vo.UserInfo;
+import com.shop.vo.userAddressVo;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //用户
@@ -122,6 +125,39 @@ public class UserController {
             map.put("msg", "注册失败");
         }
         return map;
+    }
+
+
+//    查询用户地址
+    @CrossOrigin //跨域
+    @RequestMapping("/queryUserAddress.action")
+    @ResponseBody
+    public List<userAddressVo> queryUserAddress(Integer uid){
+        return userService.userAddress(uid);
+    }
+
+    //修改默认地址
+    @CrossOrigin //跨域
+    @RequestMapping("/editUserAddress.action")
+    @ResponseBody
+    public int editUserAddress(Integer shstoreid,Integer uid){
+        return userService.editUserAddress(shstoreid,uid);
+    }
+
+//    新增收货地址
+    @CrossOrigin //跨域
+    @RequestMapping("/addUserAddress.action")
+    @ResponseBody
+    public int addUserAddress(Integer uid,Integer shstoreid,String tag){
+        return userService.addUserAddress(uid,shstoreid,tag);
+    }
+
+    //删除收货地址
+    @CrossOrigin //跨域
+    @RequestMapping("/delUserAddress.action")
+    @ResponseBody
+    public int delUserAddress(Integer aid){
+        return userService.delUserAddress(aid);
     }
 
 }

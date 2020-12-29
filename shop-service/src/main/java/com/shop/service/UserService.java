@@ -2,6 +2,10 @@ package com.shop.service;
 
 import com.shop.vo.PageVo;
 import com.shop.vo.UserInfo;
+import com.shop.vo.userAddressVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 //用户
 public interface UserService {
@@ -39,4 +43,17 @@ public interface UserService {
      * @return
      */
     public int editUserInfo(UserInfo userInfo);
+
+
+    //    查询用户地址信息
+    public List<userAddressVo> userAddress(Integer uid);
+
+    //修改默认地址
+    public int editUserAddress(Integer shstoreid,Integer uid);
+
+    //    新增收货地址
+    public int addUserAddress(Integer uid,Integer shstoreid,String tag);
+
+    //删除收货地址
+    public int delUserAddress(Integer aid);
 }
