@@ -56,35 +56,29 @@ public class OrderServiceImpl implements OrderService
         return orderDao.qdOrder(orderid,state3);
     }
 
+    /**
+     * 通过商户编号 查询商户订单
+     * @param orderInfo
+     * @return
+     */
     @Override
-    public PageVo<OrderInfo> queryAllOrderInfoBySid(OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2) {
-        return null;
+    public PageVo<OrderInfo> queryAllOrderInfoBySid(int state,OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2) {
+        PageVo<OrderInfo> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(orderDao.queryAllOrderInfoBySid(state,orderInfo,orderTime1,orderTime2));
+        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(state,orderInfo,orderTime1,orderTime2));
+        return pageVo;
     }
 
-
-//    /**
-//     * 通过商户编号 查询商户订单
-//     * @param orderInfo
-//     * @return
-//     */
-//    @Override
-//    public PageVo<OrderInfo> queryAllOrderInfoBySid(int state,OrderInfo orderInfo, int page, int rows, Date orderTime1, Date orderTime2) {
-//        PageVo<OrderInfo> pageVo=new PageVo<>();
-//        PageHelper.startPage(page,rows);
-//        pageVo.setRows(orderDao.queryAllOrderInfoBySid(state,orderInfo,orderTime1,orderTime2));
-//        pageVo.setTotal(orderDao.queryCountOrderInfoBySid(state,orderInfo,orderTime1,orderTime2));
-//        return pageVo;
-//    }
-
-//    /**
-//     * 根据商户信息 修改商户订单状态
-//     * @param orderInfo
-//     * @return
-//     */
-//    @Override
-//    public int updateOrderInfoBySid(OrderInfo orderInfo) {
-//        return orderDao.updateOrderInfoBySid(orderInfo);
-//    }
+    /**
+     * 根据商户信息 修改商户订单状态
+     * @param orderInfo
+     * @return
+     */
+    @Override
+    public int updateOrderInfoBySid(OrderInfo orderInfo) {
+        return orderDao.updateOrderInfoBySid(orderInfo);
+    }
 
     @Override
     public int inOrderInfo(Integer uid, List<Map> list) {

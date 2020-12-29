@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin
 @Controller
@@ -63,8 +60,7 @@ public class OrderController {
                                                     @RequestParam(value = "page", defaultValue = "1") int page,
                                                     @RequestParam(value = "rows", defaultValue = "5") int rows) {
         System.out.println(orderInfo.getStoreid());
-//        return orderService.queryAllOrderInfoBySid(state,orderInfo, page, rows, orderTime1, orderTime2);
-    return null;
+        return orderService.queryAllOrderInfoBySid(state,orderInfo, page, rows, orderTime1, orderTime2);
     }
 
 
@@ -76,12 +72,12 @@ public class OrderController {
         return orderService.HNoStateOrderPage(orderInfo, page, rows);
     }
 
-//    @RequestMapping(value = "inOrderInfo.action")
-//    @ResponseBody
-//    public int inOrderInfo(Integer uid, String str) {
-//        List<Map> list = (List<Map>) JSON.parse(str);
-//        return orderService.inOrderInfo(uid, list);
-//    }
+    @RequestMapping(value = "inOrderInfo.action")
+    @ResponseBody
+    public int inOrderInfo(Integer uid, String str) {
+        List<Map> list = (List<Map>) JSON.parse(str);
+        return orderService.inOrderInfo(uid, list);
+    }
 
     @RequestMapping(value = "inOrderInfo1.action")
     @ResponseBody
@@ -97,10 +93,10 @@ public class OrderController {
     @RequestMapping(value = "/updateOrderInfoBySid.action",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public String updateOrderInfoBySid(OrderInfo orderInfo) {
-//        int num=orderService.updateOrderInfoBySid(orderInfo);
-//        if (num > 0){
-//            return "修改成功";
-//        }
+        int num=orderService.updateOrderInfoBySid(orderInfo);
+        if (num > 0){
+            return "修改成功";
+        }
         return "修改失败";
     }
 
