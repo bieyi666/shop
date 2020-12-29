@@ -26,7 +26,10 @@
     </select>
 
     <insert id="inRolePer">
-        insert into role_menu(rid, mid) values (#{rid}, #{mid})
+        insert into role_menu(rid, mid) values
+        <foreach collection="list" item="value" separator=",">
+            (#{rid},#{value})
+        </foreach>
     </insert>
 
     <delete id="delRolePer">

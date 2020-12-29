@@ -47,19 +47,11 @@ public class RoleServiceImpl implements RoleService {
         List<Integer> list = JSON.parseArray(midList1, Integer.class);
         List<Integer> list1 = JSON.parseArray(midList2, Integer.class);
 
-        for (Integer i : list) {
-            if (roleDao.inRolePer(rid, i) < 1) {
-                // 回滚
-
-                return false;
-            }
+        if (list.size() >= 1) {
+            roleDao.inRolePer(rid, list);
         }
-        for (Integer i : list1) {
-            if (roleDao.inRolePer(rid, i) < 1) {
-                // 回滚
-
-                return false;
-            }
+        if (list1.size() >= 1) {
+            roleDao.inRolePer(rid, list1);
         }
         return true;
     }

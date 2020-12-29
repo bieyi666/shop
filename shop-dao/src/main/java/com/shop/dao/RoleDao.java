@@ -55,10 +55,10 @@ public interface RoleDao {
      * 添加角色权限
      *
      * @param rid 角色id
-     * @param mid 菜单按钮id
+     * @param list 菜单按钮id
      * @return
      */
-    public int inRolePer(@Param("rid") Integer rid, @Param("mid") Integer mid);
+    public int inRolePer(@Param("rid") Integer rid, @Param("list") List<Integer> list);
 
     /**
      * 删除角色权限
