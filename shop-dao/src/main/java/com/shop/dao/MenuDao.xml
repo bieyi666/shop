@@ -6,23 +6,29 @@
     <select id="seMenu" resultType="Menu">
         select * from menu_info
         <where>
+            id in (0
             <if test="list.size > 1">
-                id in
-                <foreach item="item" collection="list" separator=","
-                         open="(" close=")" index="">
+                ,
+                <foreach item="item" collection="list" separator=",">
                     #{item}
                 </foreach>
             </if>
+            )
         </where>
     </select>
 
     <select id="seMenuBtn" resultType="MenuBtn">
         select * from menu_btn
-        where id in
-        <foreach item="item" collection="list" separator=","
-                 open="(" close=")" index="">
-            #{item}
-        </foreach>
+        <where>
+            id in (0
+            <if test="list.size > 1">
+                ,
+                <foreach item="item" collection="list" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            )
+        </where>
     </select>
 
     <select id="seMenu1" resultMap="seMenuRM1">
