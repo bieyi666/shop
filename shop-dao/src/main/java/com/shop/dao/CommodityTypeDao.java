@@ -63,4 +63,73 @@ public interface CommodityTypeDao {
      * @return
      */
     public List<CommodityType>queryAllxiuci(int tid);
+
+
+
+    //--------------------------------后台类型管理
+
+    /**
+     * 添加主类型
+     * @param commodityType
+     * @return
+     */
+    public int insertzhu(CommodityType commodityType);
+    /**
+     * 添加中类型
+     * @param commodityType
+     * @return
+     */
+    public int insertzho(CommodityType commodityType);
+    /**
+     * 添加次类型
+     * @param commodityType
+     * @return
+     */
+    public int insertci(CommodityType commodityType);
+
+    /**
+     * 修改主类型
+     * @param commodityType
+     * @return
+     */
+    public int updatezhu(CommodityType commodityType);
+    /**
+     * 修改中类型
+     * @param commodityType
+     * @return
+     */
+    public int updatezho(CommodityType commodityType);
+    /**
+     * 修改次类型
+     * @param commodityType
+     * @return
+     */
+    public int updateci(CommodityType commodityType);
+
+    /**
+     * 删除类型
+     * @param tId
+     * @return
+     */
+    public int deleteAll(int tId);
+
+    /**
+     * 删除主下面类型
+     * @param ter
+     * @return
+     */
+    public int deleteAll2(int ter);
+
+    /**
+     * 查询指定所有类型
+     * @param
+     * @return
+     */
+    public List<CommodityType> getAllzhu();
+    /**
+     * 查询指定所有类型
+     * @param
+     * @return
+     */
+    public List<CommodityType> getAllzho();
 }

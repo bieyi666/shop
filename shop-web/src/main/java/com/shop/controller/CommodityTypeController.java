@@ -91,4 +91,67 @@ public class CommodityTypeController {
     public List<CommodityType> queryAllxiuzho(int tid) {
         return commodityTypeService.queryAllxiuzho(tid);
     }
+
+    @CrossOrigin
+    @RequestMapping("/insertzhu.action")
+    @ResponseBody
+    public int insertzhu(CommodityType commodityType) {
+        return commodityTypeService.insertzhu(commodityType);
+    }
+    @CrossOrigin
+    @RequestMapping("/insertzho.action")
+    @ResponseBody
+    public int insertzho(CommodityType commodityType) {
+        return commodityTypeService.insertzho(commodityType);
+    }
+    @CrossOrigin
+    @RequestMapping("/insertci.action")
+    @ResponseBody
+    public int insertci(CommodityType commodityType) {
+        return commodityTypeService.insertci(commodityType);
+    }
+    @CrossOrigin
+    @RequestMapping("/updatezhu.action")
+    @ResponseBody
+    public int updatezhu(CommodityType commodityType) {
+        return commodityTypeService.updatezhu(commodityType);
+    }
+    @CrossOrigin
+    @RequestMapping("/updatezho.action")
+    @ResponseBody
+    public int updatezho(CommodityType commodityType) {
+        return commodityTypeService.updatezho(commodityType);
+    }
+    @CrossOrigin
+    @RequestMapping("/updateci.action")
+    @ResponseBody
+    public int updateci(CommodityType commodityType) {
+        return commodityTypeService.updateci(commodityType);
+    }
+    @CrossOrigin
+    @RequestMapping("/deleteAll.action")
+    @ResponseBody
+    public int deleteAll(int  tId) {
+        return commodityTypeService.deleteAll(tId);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/deleteAll.action")
+    @ResponseBody
+    public int deleteAllduo(int  tId) {
+        return commodityTypeService.deleteAll(tId);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/getAllzhu.action")
+    @ResponseBody
+    public List<CommodityType> getAllzhu( ) {
+        return commodityTypeService.getAllzhu();
+    }
+    @CrossOrigin
+    @RequestMapping("/getAllzho.action")
+    @ResponseBody
+    public  List<CommodityType> getAllzho(  ) {
+        return commodityTypeService.getAllzho();
+    }
 }

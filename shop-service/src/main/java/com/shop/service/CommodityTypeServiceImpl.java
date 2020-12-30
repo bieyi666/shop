@@ -75,4 +75,49 @@ public class CommodityTypeServiceImpl implements CommodityTypeService
     public List<CommodityType> queryAllxiuci(int tid) {
         return commodityTypeDao.queryAllxiuci(tid);
     }
+
+    @Override
+    public int insertzhu(CommodityType commodityType) {
+        return commodityTypeDao.insertzhu(commodityType);
+    }
+
+    @Override
+    public int insertzho(CommodityType commodityType) {
+        return commodityTypeDao.insertzho(commodityType);
+    }
+
+    @Override
+    public int insertci(CommodityType commodityType) {
+        return commodityTypeDao.insertci(commodityType);
+    }
+
+    @Override
+    public int updatezhu(CommodityType commodityType) {
+        return commodityTypeDao.updatezhu(commodityType);
+    }
+
+    @Override
+    public int updatezho(CommodityType commodityType) {
+        return commodityTypeDao.updatezho(commodityType);
+    }
+
+    @Override
+    public int updateci(CommodityType commodityType) {
+        return commodityTypeDao.updateci(commodityType);
+    }
+
+    @Override
+    public int deleteAll(int tId) {
+        return commodityTypeDao.deleteAll(tId);
+    }
+
+    @Override
+    public List<CommodityType> getAllzhu() {
+        return commodityTypeDao.getAllzhu();
+    }
+
+    @Override
+    public List<CommodityType> getAllzho() {
+        return commodityTypeDao.getAllzho();
+    }
 }

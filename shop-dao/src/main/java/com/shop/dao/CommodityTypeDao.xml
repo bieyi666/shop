@@ -59,4 +59,39 @@
         (SELECT ter FROM `commodity_type` WHERE tid IN
         (SELECT tsan FROM `commodity_type` WHERE tId=#{tid}))
     </select>
+
+    <!--主-->
+    <insert id="insertzhu" parameterType="CommodityType">
+        INSERT INTO commodity_type(tName,ter) VALUES(#{tName},0);
+    </insert>
+    <update id="updatezhu" parameterType="CommodityType">
+        UPDATE commodity_type SET tName=#{tName} WHERE tId=#{tId}
+    </update>
+    <!--中-->
+    <insert id="insertzho" parameterType="CommodityType">
+        INSERT INTO commodity_type(tName,ter,tsan) VALUES(#{tName},#{ter},0);
+    </insert>
+    <update id="updatezho" parameterType="CommodityType">
+        UPDATE commodity_type SET ter=#{ter},tName=#{tName} WHERE tId=#{tId}
+    </update>
+    <!--次-->
+    <insert id="insertci" parameterType="CommodityType">
+        INSERT INTO commodity_type(tName,ter,tsan) VALUES(#{tName},1000,#{tsan});
+    </insert>
+    <update id="updateci" parameterType="CommodityType">
+        UPDATE commodity_type SET tsan=#{tsan},tName=#{tName} WHERE tId=#{tId}
+    </update>
+
+
+    <delete id="deleteAll" parameterType="int">
+        DELETE FROM commodity_type WHERE tid=#{tid}
+    </delete>
+
+
+    <select id="getAllzhu" resultType="CommodityType">
+        SELECT* FROM commodity_type WHERE ter=0
+    </select>
+    <select id="getAllzho" resultType="CommodityType">
+        SELECT* FROM commodity_type WHERE tsan=0
+    </select>
 </mapper>
