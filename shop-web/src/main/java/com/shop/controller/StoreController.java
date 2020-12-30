@@ -99,6 +99,14 @@ public class StoreController {
         return storeService.applyAudit(storeid,results);
     }
 
+    @CrossOrigin
+    @RequestMapping("/applyAuditFalse.action")
+    @ResponseBody
+    public int applyAuditFalse(int storeid){
+        return storeService.applyAuditFalse(storeid);
+    }
+
+
 //    public PageVo<StoreInfo> queryAllStore(StoreInfo storeInfo,int page, int rows);
     @CrossOrigin
     @RequestMapping("/queryAllStore.action")

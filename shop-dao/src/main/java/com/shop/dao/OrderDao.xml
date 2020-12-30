@@ -57,6 +57,7 @@
             o.uId = #{uid}
             <if test="state3!=null">and o.state3 = #{state3}</if>
         </where>
+        order by o.orderid desc
     </select>
 
     <select id="userOrderPageCount" resultType="int" parameterType="userInfo">
@@ -69,6 +70,7 @@
             o.uId = #{uid}
             <if test="state3!=null">and o.state3 = #{state3}</if>
         </where>
+        order by o.orderid desc
     </select>
 
 
@@ -127,6 +129,7 @@
             INNER JOIN order_info o ON s. storeid = o.storeid
             INNER JOIN order_goods og ON  og.orderid = o.orderid
             INNER JOIN commodity c ON c.cId =  og.goodsid
+            WHERE o.state1 = 0
     </select>
     <!--    public int HstoreOrderPageCount(StoreInfo storeInfo);-->
     <select id="HstoreOrderPageCount" resultType="int" parameterType="storeInfo">
@@ -135,6 +138,7 @@
             INNER JOIN order_info o ON s. storeid = o.storeid
             INNER JOIN order_goods og ON  og.orderid = o.orderid
             INNER JOIN commodity c ON c.cId =  og.goodsid
+            WHERE o.state1 = 0
     </select>
 
 
@@ -250,7 +254,7 @@
 
     <insert id="inOrderInfo" useGeneratedKeys="true" keyProperty="orderid" keyColumn="orderid">
         insert into order_info(uid, storeid, orderTime, receiptTime, state1, state2, state3)
-        values (#{uid}, 1, CURRENT_TIMESTAMP, null, 0, 0, 1);
+        values (#{uid}, #{storeid}, CURRENT_TIMESTAMP, null, 0, 0, 1);
     </insert>
 
     <insert id="inOrderGoods">

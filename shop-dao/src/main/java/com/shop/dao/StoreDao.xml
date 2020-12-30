@@ -61,6 +61,12 @@
           `state` = #{results}
         WHERE `storeid` = #{storeid}
     </update>
+    <delete id="applyAuditFalse">
+        DELETE
+            FROM
+              `store_info`
+            WHERE `storeid` = #{storeid}
+    </delete>
 
     <!--查询所有在售商户-->
     <!--    public List<StoreInfo> queryAllStore(StoreInfo storeInfo);-->

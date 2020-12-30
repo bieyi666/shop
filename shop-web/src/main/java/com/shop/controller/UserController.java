@@ -54,8 +54,6 @@ public class UserController {
         UserInfo userInfo = userService.queryUserInfo(uid);
         return userInfo;
     }
-
-
     @CrossOrigin //跨域
     @RequestMapping(value = "/QeditUserInfo.action")
     @ResponseBody
@@ -87,9 +85,11 @@ public class UserController {
     @ResponseBody
     public Map queryerUserInfo(UserInfo userInfo, HttpSession session) {
         Map<String, Object> map = new HashMap<String, Object>();
-        Md5Hash md5Hash = new Md5Hash(userInfo.getPassword(), "哥谭市", 5);
-        userInfo.setPassword(md5Hash + "");
-        System.out.println(md5Hash);
+        if(userInfo.getPassword()!=null){
+            Md5Hash md5Hash = new Md5Hash(userInfo.getPassword(), "哥谭市", 5);
+            userInfo.setPassword(md5Hash + "");
+            System.out.println(md5Hash);
+        }
         UserInfo userInfo1 = userService.queryerUserInfo(userInfo);
         System.out.println("拿到数据" + userInfo);
         if (userInfo1 != null) {
@@ -98,6 +98,7 @@ public class UserController {
             map.put("msg", "登录成功");
             map.put("username", userInfo1.getPhone());
             map.put("uid", userInfo1.getUid());
+            map.put("shstoreid", userInfo1.getShstoreid());
         } else {
             map.put("code", "1");
             map.put("msg", "登录失败");

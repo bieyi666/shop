@@ -81,9 +81,10 @@ public class OrderServiceImpl implements OrderService
     }
 
     @Override
-    public int inOrderInfo(Integer uid, List<Map> list) {
+    public int inOrderInfo(Integer uid, List<Map> list,Integer storeid) {
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setUid(uid);
+        orderInfo.setStoreid(storeid);
         int result = orderDao.inOrderInfo(orderInfo);
         if (result < 1) {
             return 0;

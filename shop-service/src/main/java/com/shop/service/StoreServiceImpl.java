@@ -56,6 +56,11 @@ public class StoreServiceImpl implements StoreService
     }
 
     @Override
+    public int applyAuditFalse(int storeid) {
+        return storeDao.applyAuditFalse(storeid);
+    }
+
+    @Override
     public PageVo<StoreInfo> queryAllStore(StoreInfo storeInfo, int page, int rows) {
         PageVo<StoreInfo> pageVo=new PageVo<>();
         PageHelper.startPage(page,rows);

@@ -74,9 +74,9 @@ public class OrderController {
 
     @RequestMapping(value = "inOrderInfo.action")
     @ResponseBody
-    public int inOrderInfo(Integer uid, String str) {
+    public int inOrderInfo(Integer uid, String str,Integer storeid) {
         List<Map> list = (List<Map>) JSON.parse(str);
-        return orderService.inOrderInfo(uid, list);
+        return orderService.inOrderInfo(uid, list,storeid);
     }
 
     @RequestMapping(value = "upOrderInfo.action")

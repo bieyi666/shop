@@ -2,6 +2,7 @@ package com.shop.service;
 
 import com.github.pagehelper.PageHelper;
 import com.shop.dao.EmpDao;
+import com.shop.dao.EmpUserDao;
 import com.shop.vo.Emp;
 import com.shop.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class EmpServiceImpl implements EmpService {
 
     @Autowired
     private EmpDao empDao;
+
+    @Autowired
+    private EmpUserDao empUserDao;
 
     @Override
     public PageVo<Emp> seEmp(String conditions, int rows, int page) {
@@ -52,16 +56,22 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public boolean inEmp(String name, String sex, Integer age, String phone, String address, String img) {
-        Map<String, Object> map = new HashMap<>(6);
+       Emp emp = new Emp();
+        emp.setAddress(address);
+        emp.setName(name);
+        emp.setAge(age);
+        emp.setPhone(phone);
+        emp.setImg(img);
+        emp.setSex(sex);
+        if (empDao.inEmp(emp) < 1) {
+            return false;
+        }
 
-        map.put("name", name);
-        map.put("sex", sex);
-        map.put("age", age);
-        map.put("phone", phone);
-        map.put("address", address);
-        map.put("img", img);
+        if (empUserDao.inEmpUser(phone, emp.getId()) < 1) {
+            return false;
+        }
 
-        return empDao.inEmp(map) > 0;
+        return true;
     }
 
     @Override

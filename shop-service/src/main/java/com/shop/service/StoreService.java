@@ -47,6 +47,8 @@ public interface StoreService {
      */
     public int applyAudit(@Param("storeid") int storeid, @Param("results") int results);
 
+    public int applyAuditFalse(int storeid);
+
     /**
      * 查询所有正在开店的商户信息
      * @param storeInfo 条件查询条件

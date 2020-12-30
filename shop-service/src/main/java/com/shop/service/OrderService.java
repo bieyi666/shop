@@ -53,7 +53,7 @@ public interface OrderService {
      * @param list
      * @return
      */
-    public int inOrderInfo(Integer uid, List<Map> list);
+    public int inOrderInfo(Integer uid, List<Map> list,Integer storeid);
 
     /**
      * 支付成功

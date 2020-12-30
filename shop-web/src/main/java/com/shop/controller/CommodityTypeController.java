@@ -96,6 +96,7 @@ public class CommodityTypeController {
     @RequestMapping("/insertzhu.action")
     @ResponseBody
     public int insertzhu(CommodityType commodityType) {
+
         return commodityTypeService.insertzhu(commodityType);
     }
     @CrossOrigin
@@ -134,14 +135,6 @@ public class CommodityTypeController {
     public int deleteAll(int  tId) {
         return commodityTypeService.deleteAll(tId);
     }
-
-    @CrossOrigin
-    @RequestMapping("/deleteAll.action")
-    @ResponseBody
-    public int deleteAllduo(int  tId) {
-        return commodityTypeService.deleteAll(tId);
-    }
-
     @CrossOrigin
     @RequestMapping("/getAllzhu.action")
     @ResponseBody

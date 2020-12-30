@@ -44,7 +44,7 @@ public interface EmpDao {
      * @param map
      * @return
      */
-    public int inEmp(Map<String, Object> map);
+    public int inEmp(Emp map);
 
     /**
      * 删除员工信息（逻辑删除）
